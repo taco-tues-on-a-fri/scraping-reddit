@@ -1,6 +1,6 @@
 /**
 |--------------------------------------------------------------------------
-| Boilerplates Template App
+| Scraping Reddit
 |--------------------------------------------------------------------------
 |
 | Notes:
@@ -53,8 +53,9 @@ dotenv.config({ path: '.env' });
 |--------------------------------------------------------------------------
 */
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const index_router =  require(appRoot + '/routes/index');
+const users_router =  require(appRoot + '/routes/users');
+const api_router   =  require(appRoot + '/routes/api');
 
 
 /**
@@ -80,7 +81,6 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(()=>{
   console.log('%s Connection to database established', chalk.green('✓'))
 }).catch(err=>{
-  // console.log(`db error ${err.message}`);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
   process.exit(-1)
 });
@@ -102,11 +102,6 @@ app.set('view engine', 'pug');
 |--------------------------------------------------------------------------
 | Middleware setup
 |--------------------------------------------------------------------------
-|
-| express.json & express.urlencoded explained:
-| https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded/51844327#51844327
-|
-| Terminal string styling
 */
 
 // Folders for static content
@@ -133,17 +128,9 @@ app.use(compression());
 |--------------------------------------------------------------------------
 | HTTP request logger setup: morgan to winston
 |--------------------------------------------------------------------------
-|
-| morgan formats:
-| combined | common | dev | short | tiny
-|
-| combined returns:
-| :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"
-|
 */
 
-app.use(morgan('combined', { stream: winston.stream }));           // broke morgan once
-// app.use(morgan('combined', { "stream": winston.stream.write})); // fixed problem once
+app.use(morgan('dev', { stream: winston.stream }));
 
 
 
@@ -154,47 +141,9 @@ app.use(morgan('combined', { stream: winston.stream }));           // broke morg
 |
 */
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-
-
-/**
-|--------------------------------------------------------------------------
-| API routes
-|--------------------------------------------------------------------------
-|
-*/
-
-// app.get('/api', apiController.getApi);
-
-
-
-/**
-|--------------------------------------------------------------------------
-| OAuth authentication routes. (Sign in)
-|--------------------------------------------------------------------------
-|
-*/
-
-// app.get('/auth/instagram', passport.authenticate('instagram', { scope: ['basic', 'public_content'] }));
-// app.get('/auth/instagram/callback', passport.authenticate('instagram', { failureRedirect: '/login' }), (req, res) => {
-//   res.redirect(req.session.returnTo || '/');
-// });
-
-
-
-/**
-|--------------------------------------------------------------------------
-| OAuth authorization routes. (API examples)
-|--------------------------------------------------------------------------
-|
-*/
-
-// app.get('/auth/foursquare', passport.authorize('foursquare'));
-// app.get('/auth/foursquare/callback', passport.authorize('foursquare', { failureRedirect: '/api' }), (req, res) => {
-//   res.redirect('/api/foursquare');
-// });
+app.use('/', index_router);
+app.use('/users', users_router);
+app.use('/api', api_router);
 
 
 
@@ -226,16 +175,3 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
-
-
-/**
-|--------------------------------------------------------------------------
-| Notes
-|--------------------------------------------------------------------------
-| 
-| Will give you more details than console.log
-| console.log(util.inspect(anyObject)) 
-|
-| `npm install app-root-path --save`
-|
-*/
