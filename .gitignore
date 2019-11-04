@@ -2,6 +2,7 @@
 *.code-workspace
 notes.*
 *.env
+vscode/
 
 # User-specific files
 *.suo
