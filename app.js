@@ -104,6 +104,16 @@ app.set('view engine', 'pug');
 
 /**
 |--------------------------------------------------------------------------
+| HTTP request logger setup: morgan to winston
+|--------------------------------------------------------------------------
+*/
+
+app.use(morgan('dev', { stream: winston.stream }));
+
+
+
+/**
+|--------------------------------------------------------------------------
 | Middleware setup
 |--------------------------------------------------------------------------
 */
@@ -125,16 +135,6 @@ app.use(expressStatusMonitor());
 
 // Node.js compression middleware | supported compression codings: deflate | gzip
 app.use(compression());
-
-
-
-/**
-|--------------------------------------------------------------------------
-| HTTP request logger setup: morgan to winston
-|--------------------------------------------------------------------------
-*/
-
-app.use(morgan('dev', { stream: winston.stream }));
 
 
 
