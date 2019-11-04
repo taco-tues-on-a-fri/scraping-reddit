@@ -103,7 +103,7 @@ let Scrape_Schema = new Schema(
 Scrape_Schema
 .virtual('url')
 .get(function () {
-  return '/api/scrape/' + this._id;
+  return '/scrape/' + this._id;
 });
 
 Scrape_Schema

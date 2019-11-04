@@ -3,8 +3,9 @@
 | Scraping Reddit
 |--------------------------------------------------------------------------
 |
-| Notes:
-|
+| TODO:
+| * Configure index.pug line 24 for scrape list link
+| * Configure layout.pug line 26+ for nav bar links
 */
 
 
@@ -17,6 +18,7 @@
 const express              =  require('express');
 
 const appRoot              =  require('app-root-path');
+const async                =  require('async');
 const chalk                =  require('chalk');
 const compression          =  require('compression');
 const cookieParser         =  require('cookie-parser');
@@ -26,6 +28,7 @@ const dotenv               =  require('dotenv');
 const expressStatusMonitor =  require('express-status-monitor');
 const fs                   =  require('fs');
 const helper               =  require(appRoot + '/lib/helper.js');
+const pushshift            =  require(appRoot + '/lib/push-shift.js');
 const moment               =  require('moment');
 const mongoose             =  require('mongoose');
 // const MongoStore           =  require('connect-mongo')(session);
@@ -56,6 +59,7 @@ dotenv.config({ path: '.env' });
 const index_router =  require(appRoot + '/routes/index');
 const users_router =  require(appRoot + '/routes/users');
 const api_router   =  require(appRoot + '/routes/api');
+const scrape_router   =  require(appRoot + '/routes/scrape');
 
 
 /**
@@ -144,6 +148,7 @@ app.use(morgan('dev', { stream: winston.stream }));
 app.use('/', index_router);
 app.use('/users', users_router);
 app.use('/api', api_router);
+app.use('/scrape', scrape_router);
 
 
 
