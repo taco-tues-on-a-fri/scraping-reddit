@@ -146,9 +146,9 @@ app.use(compression());
 */
 
 app.use('/', index_router);
-app.use('/users', users_router);
-app.use('/api', api_router);
-app.use('/scrape', scrape_router);
+app.use('/', users_router);
+app.use('/', api_router);
+app.use('/', scrape_router);
 
 
 
