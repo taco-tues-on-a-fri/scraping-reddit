@@ -15,5 +15,5 @@ exports.scrape_create_get = function(req, res, next) {
   );
 };
 
-// exports.scrape_create_post = pushshift.search_by_id_then_get_comments
+exports.scrape_create_post = pushshift.search_by_id_then_get_comments
 
