@@ -22,6 +22,7 @@ const align_colors_time = winston.format.combine(
 // Configure the logger for `align_colors_time`
 //
 winston.loggers.add('align_colors_time', {
+  level: 'debug',
   handleExceptions: true,
   format: winston.format.combine(
     winston.format.colorize(), 
@@ -29,34 +30,14 @@ winston.loggers.add('align_colors_time', {
     ),
   transports: [
     new winston.transports.Console({ level: 'debug' }),
-    // new winston.transports.File({ filename: `${appRoot}/logs/app.log` })
   ]
 });
-// winston.loggers.add('align_colors_time', {
-//   handleExceptions: true,
-//   format: combine(
-//     winston.format.colorize({
-//       all:true
-//     }),
-//     winston.format.label({
-//       label:'[LOGGER]'
-//     }),
-//     winston.format.timestamp({
-//       format:"YY-MM-DD HH:MM:SS"
-//     }),
-//     winston.format.printf(
-//       info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
-//     )
-//   ),
-//   transports: [
-//     new winston.transports.Console({ level: 'debug' }),
-//   ]
-// });
 
 //
 // Configure the logger for `error_log_file`
 //
 winston.loggers.add('error_log_file', {
+  level: 'error',
   handleExceptions: true,
   maxsize: 5242880, // 5MB
   maxFiles: 5,
@@ -65,62 +46,63 @@ winston.loggers.add('error_log_file', {
       winston.format.prettyPrint()
   ),
   transports: [
-    new winston.transports.File({ filename: `${appRoot}/logs/app.log`, level: 'error' })
+    new winston.transports.File({ filename: `${appRoot}/logs/app.log` })
   ]
 });
 
 
 
-// const options = {
-//   file: {
-//     level: 'error',
-//     filename: `${appRoot}/logs/app.log`,
-//     handleExceptions: true,
-//     maxsize: 5242880, // 5MB
-//     maxFiles: 5,
-//     format: winston.format.combine(
-//       winston.format.json(),
-//       winston.format.prettyPrint()
-//     )
-//   },
-//   console: {
-//     level: 'debug',
-//     handleExceptions: true,
-//     format: winston.format.combine(
-//       winston.format.colorize(), 
-//       align_colors_time
-//     )
-//   },
-// };
+const options = {
+  file: {
+    level: 'error',
+    filename: `${appRoot}/logs/app.log`,
+    handleExceptions: true,
+    maxsize: 5242880, // 5MB
+    maxFiles: 5,
+    format: winston.format.combine(
+      winston.format.json(),
+      winston.format.prettyPrint()
+    )
+  },
+  console: {
+    level: 'debug',
+    handleExceptions: true,
+    format: winston.format.combine(
+      winston.format.colorize(), 
+      align_colors_time
+    )
+  },
+};
 
 // // Instantiate a new Winston Logger with the settings defined above
 const logger = new winston.createLogger({
   // level: 'error',
   transports: [
-    new winston.transports.File({ filename: `${appRoot}/logs/app.log` })
+    // new winston.transports.File({ filename: `${appRoot}/logs/app.log` }),
+    // new winston.transports.Console({ level: 'debug' }),
     // new winston.transports.File(options.file)
-  ],
-  // // transports: [
-  //   new winston.transports.File(options.file),
-  //   new winston.transports.Console(options.console)
   // ],
+  // // transports: [
+    new winston.transports.File(options.file),
+    new winston.transports.Console(options.console)
+  ],
   exitOnError: false, // do not exit on handled exceptions
 });
 
-const morgan_logger = winston.loggers.get('align_colors_time');
+const align_colors_time = winston.loggers.get('align_colors_time');
 
 // Create a stream object with a 'write' function that will be used by `morgan`
 // winston.stream = new stream.Duplex({
 //   write: function(message, encoding) {
 //     // use the 'info' log level so the output will be picked up by both transports (file and console)
-//     morgan_logger.info(message);
+//     align_colors_time.info(message);
 //   }
   
 // })
 logger.stream = {
   write: function(message, encoding) {
     // use the 'info' log level so the output will be picked up by both transports (file and console)
-    morgan_logger.info(message);
+    align_colors_time.info(message);
   }
   
 }

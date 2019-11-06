@@ -159,7 +159,7 @@ app.use('/', scrape_router);
 |--------------------------------------------------------------------------
 */
 
-const console_logger = winston.loggers.get('error_log_file');
+const error_log_file = winston.loggers.get('error_log_file');
 // Catch 404
 app.use(function(req, res, next) {
   next(createError(404));
@@ -172,8 +172,8 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // include winston logging
-  console_logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-  // console_logger.error(`${err.stack === undefined ? '' : err.stack}`);
+  error_log_file.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+  // error_log_file.error(`${err.stack === undefined ? '' : err.stack}`);
 
   // render the error page
   res.status(err.status || 500);
