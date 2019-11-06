@@ -12,8 +12,7 @@ exports.scrape_create_get = function(req, res, next) {
   res.render('scrape_form', 
   {
     title: 'Create Scrape'
-  }
-  );
+  });
 };
 
 //  Scrape create POST
