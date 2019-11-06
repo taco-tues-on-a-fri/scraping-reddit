@@ -109,7 +109,7 @@ app.set('view engine', 'pug');
 |--------------------------------------------------------------------------
 */
 
-app.use(morgan('dev', { "stream": "winston.stream" }));
+app.use(morgan('dev', { stream: winston.stream }));
 
 
 

@@ -93,15 +93,17 @@ winston.loggers.add('error_log_file', {
 // });
 const morgan_logger = winston.loggers.get('alignColorsAndTime');
 // Create a stream object with a 'write' function that will be used by `morgan`
-winston.stream = {
+winston.stream = new stream.Duplex({
   write: function(message, encoding) {
     // use the 'info' log level so the output will be picked up by both transports (file and console)
     morgan_logger.info(message);
   }
   
-}
+})
+
 
 // module.exports = logger;
+module.exports = winston;
 
 /**
 |--------------------------------------------------------------------------
