@@ -3,6 +3,8 @@ const winston = require('winston');
 const fix_errors = require(appRoot + '/config/fix_errors');
 
 const alignColorsAndTime = winston.format.combine(
+  // winston.format.splat(),
+  // fix_errors(),
   winston.format.colorize({
     all:true
   }),
@@ -12,9 +14,13 @@ const alignColorsAndTime = winston.format.combine(
   winston.format.timestamp({
     format:"YY-MM-DD HH:MM:SS"
   }),
+  // winston.format.printf(
+  //   info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
+  // ),
   winston.format.printf(
-    info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
-  )
+    info => ` ${info.stack === undefined ? '' : info.stack}`
+    )
+
 );
 
 const options = {
@@ -54,8 +60,8 @@ const options = {
 const logger = new winston.createLogger({
   transports: [
     new winston.transports.File(options.file),
-    // new winston.transports.Console(options.console),
-    new winston.transports.Console(options.stack)
+    new winston.transports.Console(options.console)
+    // new winston.transports.Console(options.stack)
   ],
   exitOnError: false, // do not exit on handled exceptions
 });
