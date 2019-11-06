@@ -159,7 +159,7 @@ app.use('/', scrape_router);
 |--------------------------------------------------------------------------
 */
 
-const console_logger = winston.loggers.get('align_colors_time');
+const console_logger = winston.loggers.get('error_log_file');
 // Catch 404
 app.use(function(req, res, next) {
   next(createError(404));

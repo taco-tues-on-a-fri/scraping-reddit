@@ -65,7 +65,7 @@ winston.loggers.add('error_log_file', {
       winston.format.prettyPrint()
   ),
   transports: [
-    new winston.transports.File({ filename: `${appRoot}/logs/app.log` })
+    new winston.transports.File({ filename: `${appRoot}/logs/app.log`, level: 'error' })
   ]
 });
 
@@ -96,10 +96,10 @@ winston.loggers.add('error_log_file', {
 // // Instantiate a new Winston Logger with the settings defined above
 const logger = new winston.createLogger({
   // level: 'error',
-  // transports: [
-  //   // new winston.transports.File({ filename: `${appRoot}/logs/app.log` })
-  //     // new winston.transports.File(options.file)
-  // // ],
+  transports: [
+    new winston.transports.File({ filename: `${appRoot}/logs/app.log` })
+    // new winston.transports.File(options.file)
+  ],
   // // transports: [
   //   new winston.transports.File(options.file),
   //   new winston.transports.Console(options.console)
