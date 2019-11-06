@@ -159,7 +159,8 @@ app.use('/', scrape_router);
 |--------------------------------------------------------------------------
 */
 
-const error_log_file = winston.loggers.get('error_log_file');
+
+const errorStackFormat = winston.loggers.get('errorStackFormat');
 // Catch 404
 app.use(function(req, res, next) {
   next(createError(404));
@@ -174,7 +175,7 @@ app.use(function(err, req, res, next) {
   // include winston logging
   logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
   // error_log_file.error(`${err.stack === undefined ? '' : err.stack}`);
-
+  errorStackFormat.error(`${error.stack}`)
   // render the error page
   res.status(err.status || 500);
   res.render('error');

@@ -17,6 +17,7 @@ const align_colors_time = winston.format.combine(
     info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
   )
 );
+
 winston.loggers.add('align_colors_time', {
   level: 'debug',
   handleExceptions: true,
@@ -29,9 +30,7 @@ winston.loggers.add('align_colors_time', {
   ]
 });
 
-//
-// Configure the logger for `error_log_file`
-//
+
 winston.loggers.add('error_log_file', {
   level: 'error',
   handleExceptions: true,
@@ -45,6 +44,46 @@ winston.loggers.add('error_log_file', {
     new winston.transports.File({ filename: `${appRoot}/logs/app.log` })
   ]
 });
+
+const errorStackTracerFormat = winston.format(info => {
+  if (info.meta && info.meta instanceof Error) {
+      info.message = `${info.message} ${info.meta.stack}`;
+  }
+  return info;
+});
+
+
+winston.loggers.add('errorStackTracer', {
+  format: winston.format.combine(
+      winston.format.splat(), // Necessary to produce the 'meta' property
+      errorStackTracerFormat(),
+      winston.format.simple()
+  )
+});
+
+const errorStackFormat = winston.format(info => {
+  if (info instanceof Error) {
+    return Object.assign({}, info, {
+      stack: info.stack,
+      message: info.message
+    })
+  }
+  return info
+})
+
+winston.loggers.add('errorStackFormat', {
+  transports: [
+    new winston.transports.File({ filename: `${appRoot}/logs/app.log` }),
+    new winston.transports.Console({ level: 'debug' })
+  ],
+  format: winston.format.combine(errorStackFormat())
+})
+
+
+
+
+
+
 
 const options = {
   file: {
@@ -68,6 +107,16 @@ const options = {
   },
 };
 
+
+
+
+
+
+
+
+
+
+
 // Instantiate a new Winston Logger with the settings defined above
 const logger = new winston.createLogger({
   transports: [
@@ -87,6 +136,18 @@ logger.stream = {
 }
 
 module.exports = logger;
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
 |--------------------------------------------------------------------------
