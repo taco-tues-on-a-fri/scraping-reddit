@@ -3,29 +3,55 @@ const winston = require('winston');
 const { format } = winston;
 const { combine, label, json } = format;
 
+const align_colors_time = winston.format.combine(
+  winston.format.colorize({
+    all:true
+  }),
+  winston.format.label({
+    label:'[LOGGER]'
+  }),
+  winston.format.timestamp({
+    format:"YY-MM-DD HH:MM:SS"
+  }),
+  winston.format.printf(
+    info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
+  )
+);
+
 //
-// Configure the logger for `alignColorsAndTime`
+// Configure the logger for `align_colors_time`
 //
-winston.loggers.add('alignColorsAndTime', {
+winston.loggers.add('align_colors_time', {
   handleExceptions: true,
-  format: combine(
-    winston.format.colorize({
-      all:true
-    }),
-    winston.format.label({
-      label:'[LOGGER]'
-    }),
-    winston.format.timestamp({
-      format:"YY-MM-DD HH:MM:SS"
-    }),
-    winston.format.printf(
-      info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
-    )
-  ),
+  format: winston.format.combine(
+    winston.format.colorize(), 
+    align_colors_time
+    ),
   transports: [
     new winston.transports.Console({ level: 'debug' }),
+    // new winston.transports.File({ filename: `${appRoot}/logs/app.log` })
   ]
 });
+// winston.loggers.add('align_colors_time', {
+//   handleExceptions: true,
+//   format: combine(
+//     winston.format.colorize({
+//       all:true
+//     }),
+//     winston.format.label({
+//       label:'[LOGGER]'
+//     }),
+//     winston.format.timestamp({
+//       format:"YY-MM-DD HH:MM:SS"
+//     }),
+//     winston.format.printf(
+//       info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
+//     )
+//   ),
+//   transports: [
+//     new winston.transports.Console({ level: 'debug' }),
+//   ]
+// });
 
 //
 // Configure the logger for `error_log_file`
@@ -39,27 +65,11 @@ winston.loggers.add('error_log_file', {
       winston.format.prettyPrint()
   ),
   transports: [
-    new winston.transports.File({ 
-      filename: `${appRoot}/logs/app.log`,
-      level: 'debug'
-    })
+    new winston.transports.File({ filename: `${appRoot}/logs/app.log` })
   ]
 });
 
-// const alignColorsAndTime = winston.format.combine(
-//   winston.format.colorize({
-//     all:true
-//   }),
-//   winston.format.label({
-//     label:'[LOGGER]'
-//   }),
-//   winston.format.timestamp({
-//     format:"YY-MM-DD HH:MM:SS"
-//   }),
-//   winston.format.printf(
-//     info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
-//   )
-// );
+
 
 // const options = {
 //   file: {
@@ -78,21 +88,26 @@ winston.loggers.add('error_log_file', {
 //     handleExceptions: true,
 //     format: winston.format.combine(
 //       winston.format.colorize(), 
-//       alignColorsAndTime
+//       align_colors_time
 //     )
 //   },
 // };
 
 // // Instantiate a new Winston Logger with the settings defined above
 const logger = new winston.createLogger({
+  // level: 'error',
   // transports: [
+  //   // new winston.transports.File({ filename: `${appRoot}/logs/app.log` })
+  //     // new winston.transports.File(options.file)
+  // // ],
+  // // transports: [
   //   new winston.transports.File(options.file),
   //   new winston.transports.Console(options.console)
   // ],
   exitOnError: false, // do not exit on handled exceptions
 });
 
-const morgan_logger = winston.loggers.get('alignColorsAndTime');
+const morgan_logger = winston.loggers.get('align_colors_time');
 
 // Create a stream object with a 'write' function that will be used by `morgan`
 // winston.stream = new stream.Duplex({
