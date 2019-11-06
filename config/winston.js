@@ -1,6 +1,6 @@
 const appRoot = require('app-root-path');
 const winston = require('winston');
-const fix_errors = require(appRoot + '/config/fix-errors');
+const fix_errors = require(appRoot + '/config/fix_errors');
 
 const alignColorsAndTime = winston.format.combine(
   winston.format.colorize({
@@ -44,7 +44,7 @@ const options = {
       winston.format.splat(),
       fix_errors(),
       winston.format.colorize(), 
-      alignColorsAndTime,
+      // alignColorsAndTime,
       winston.format.printf(info => `${info.level.toUpperCase()} ${info.message} ${info.stack === undefined ? '' : info.stack}`)
     )
   },
@@ -54,7 +54,7 @@ const options = {
 const logger = new winston.createLogger({
   transports: [
     new winston.transports.File(options.file),
-    new winston.transports.Console(options.console)
+    // new winston.transports.Console(options.console),
     new winston.transports.Console(options.stack)
   ],
   exitOnError: false, // do not exit on handled exceptions
