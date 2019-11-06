@@ -6,6 +6,7 @@ const { sanitizeBody } = require('express-validator');
 
 
 
+const home_controller = require(appRoot + '/controllers/home_controller');
 const scrape_controller = require(appRoot + '/controllers/scrape_controller');
 /**
 |--------------------------------------------------------------------------
