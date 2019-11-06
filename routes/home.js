@@ -5,7 +5,7 @@ const { body,validationResult } = require('express-validator');
 const { sanitizeBody } = require('express-validator');
 
 
-const api_controller = require(appRoot + '/controllers/api_controller');
+
 const scrape_controller = require(appRoot + '/controllers/scrape_controller');
 /**
 |--------------------------------------------------------------------------
@@ -14,6 +14,6 @@ const scrape_controller = require(appRoot + '/controllers/scrape_controller');
 */
 
 // GET home page 
-router.get('/', api_controller.index);
+router.get('/', home_controller.index);
 
 module.exports = router;

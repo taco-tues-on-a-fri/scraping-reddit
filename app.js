@@ -56,10 +56,9 @@ dotenv.config({ path: '.env' });
 |--------------------------------------------------------------------------
 */
 
-const index_router =  require(appRoot + '/routes/index');
-const users_router =  require(appRoot + '/routes/users');
-const api_router   =  require(appRoot + '/routes/api');
-const scrape_router   =  require(appRoot + '/routes/scrape');
+const home_router   =  require(appRoot + '/routes/home');
+const users_router  =  require(appRoot + '/routes/users');
+const scrape_router =  require(appRoot + '/routes/scrape');
 
 
 /**
@@ -145,9 +144,8 @@ app.use(compression());
 |
 */
 
-app.use('/', index_router);
+app.use('/', home_router);
 app.use('/', users_router);
-app.use('/', api_router);
 app.use('/', scrape_router);
 
 
