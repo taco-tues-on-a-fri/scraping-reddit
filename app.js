@@ -36,7 +36,7 @@ const morgan               =  require('morgan');
 // const passport             =  require('passport');
 const path                 =  require('path');
 const util                 =  require('util');
-// const winston              =  require(appRoot + '/config/winston');
+const logger              =  require(appRoot + '/config/winston');
 const winston = require('winston');
 
 
@@ -109,7 +109,7 @@ app.set('view engine', 'pug');
 |--------------------------------------------------------------------------
 */
 
-app.use(morgan('dev', { stream: winston.stream }));
+app.use(morgan('dev', { stream: logger.stream }));
 
 
 

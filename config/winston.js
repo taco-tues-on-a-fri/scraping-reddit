@@ -84,26 +84,35 @@ winston.loggers.add('error_log_file', {
 // };
 
 // // Instantiate a new Winston Logger with the settings defined above
-// const logger = new winston.createLogger({
-//   transports: [
-//     new winston.transports.File(options.file),
-//     new winston.transports.Console(options.console)
-//   ],
-//   exitOnError: false, // do not exit on handled exceptions
-// });
+const logger = new winston.createLogger({
+  // transports: [
+  //   new winston.transports.File(options.file),
+  //   new winston.transports.Console(options.console)
+  // ],
+  exitOnError: false, // do not exit on handled exceptions
+});
+
 const morgan_logger = winston.loggers.get('alignColorsAndTime');
+
 // Create a stream object with a 'write' function that will be used by `morgan`
-winston.stream = new stream.Duplex({
+// winston.stream = new stream.Duplex({
+//   write: function(message, encoding) {
+//     // use the 'info' log level so the output will be picked up by both transports (file and console)
+//     morgan_logger.info(message);
+//   }
+  
+// })
+logger.stream = stream {
   write: function(message, encoding) {
     // use the 'info' log level so the output will be picked up by both transports (file and console)
     morgan_logger.info(message);
   }
   
-})
+}
 
 
-// module.exports = logger;
-module.exports = winston;
+module.exports = logger;
+// module.exports = winston;
 
 /**
 |--------------------------------------------------------------------------
