@@ -24,6 +24,9 @@ const options = {
     maxsize: 5242880, // 5MB
     maxFiles: 5,
     format: winston.format.combine(
+      winston.format.timestamp({
+        format:"YY-MM-DD  HH:mm:ss"
+      }),
       winston.format.json(),
       winston.format.prettyPrint()
     )
