@@ -36,7 +36,8 @@ const morgan               =  require('morgan');
 // const passport             =  require('passport');
 const path                 =  require('path');
 const util                 =  require('util');
-const winston              =  require(appRoot + '/config/winston');
+// const winston              =  require(appRoot + '/config/winston');
+const winston = require('winston');
 
 
 
@@ -108,7 +109,7 @@ app.set('view engine', 'pug');
 |--------------------------------------------------------------------------
 */
 
-app.use(morgan('dev', { stream: winston.stream }));
+app.use(morgan('dev', { "stream": "winston.stream" }));
 
 
 
@@ -158,11 +159,11 @@ app.use('/', scrape_router);
 |--------------------------------------------------------------------------
 */
 
+const console_logger = winston.loggers.get('alignColorsAndTime');
 // Catch 404
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 
 // Error handler
 app.use(function(err, req, res, next) {
@@ -171,8 +172,8 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // include winston logging
-  winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-  winston.error(`${err.stack === undefined ? '' : err.stack}`);
+  console_logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+  // console_logger.error(`${err.stack === undefined ? '' : err.stack}`);
 
   // render the error page
   res.status(err.status || 500);

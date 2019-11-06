@@ -28,7 +28,7 @@ winston.loggers.add('alignColorsAndTime', {
 });
 
 //
-// Configure the logger for `category2`
+// Configure the logger for `error_log_file`
 //
 winston.loggers.add('error_log_file', {
   handleExceptions: true,
@@ -61,47 +61,47 @@ winston.loggers.add('error_log_file', {
 //   )
 // );
 
-const options = {
-  file: {
-    level: 'error',
-    filename: `${appRoot}/logs/app.log`,
-    handleExceptions: true,
-    maxsize: 5242880, // 5MB
-    maxFiles: 5,
-    format: winston.format.combine(
-      winston.format.json(),
-      winston.format.prettyPrint()
-    )
-  },
-  console: {
-    level: 'debug',
-    handleExceptions: true,
-    format: winston.format.combine(
-      winston.format.colorize(), 
-      alignColorsAndTime
-    )
-  },
-};
+// const options = {
+//   file: {
+//     level: 'error',
+//     filename: `${appRoot}/logs/app.log`,
+//     handleExceptions: true,
+//     maxsize: 5242880, // 5MB
+//     maxFiles: 5,
+//     format: winston.format.combine(
+//       winston.format.json(),
+//       winston.format.prettyPrint()
+//     )
+//   },
+//   console: {
+//     level: 'debug',
+//     handleExceptions: true,
+//     format: winston.format.combine(
+//       winston.format.colorize(), 
+//       alignColorsAndTime
+//     )
+//   },
+// };
 
-// Instantiate a new Winston Logger with the settings defined above
-const logger = new winston.createLogger({
-  transports: [
-    new winston.transports.File(options.file),
-    new winston.transports.Console(options.console)
-  ],
-  exitOnError: false, // do not exit on handled exceptions
-});
-
+// // Instantiate a new Winston Logger with the settings defined above
+// const logger = new winston.createLogger({
+//   transports: [
+//     new winston.transports.File(options.file),
+//     new winston.transports.Console(options.console)
+//   ],
+//   exitOnError: false, // do not exit on handled exceptions
+// });
+const morgan_logger = winston.loggers.get('alignColorsAndTime');
 // Create a stream object with a 'write' function that will be used by `morgan`
-logger.stream = {
+winston.stream = {
   write: function(message, encoding) {
     // use the 'info' log level so the output will be picked up by both transports (file and console)
-    logger.info(message);
+    morgan_logger.info(message);
   }
   
 }
 
-module.exports = logger;
+// module.exports = logger;
 
 /**
 |--------------------------------------------------------------------------
