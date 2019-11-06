@@ -172,7 +172,7 @@ app.use(function(err, req, res, next) {
 
   // include winston logging
   winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-  // winston.error(err.stack);
+  winston.error(`${err.stack === undefined ? '' : err.stack}`);
 
   // render the error page
   res.status(err.status || 500);
@@ -181,21 +181,3 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
-// const error = new Error('something bad happened');
-// logger.error('was doing this and', error);
-
-// ERROR was doing this and Error: something bad happened <rest of the stack>
-
-
-
-// app.use((error, req, res, next) => {
-//   // Sets HTTP status code
-//   res.status(error.status || 500)
-
-//   // Sends response
-//   res.json({
-//     status: error.status,
-//     message: error.message,
-//     stack: error.stack
-//   })
-// })
