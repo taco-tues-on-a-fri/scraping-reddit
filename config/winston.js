@@ -1,10 +1,7 @@
 const appRoot = require('app-root-path');
 const winston = require('winston');
-const fix_errors = require(appRoot + '/config/fix_errors');
 
 const alignColorsAndTime = winston.format.combine(
-  // winston.format.splat(),
-  // fix_errors(),
   winston.format.colorize({
     all:true
   }),
@@ -14,13 +11,9 @@ const alignColorsAndTime = winston.format.combine(
   winston.format.timestamp({
     format:"YY-MM-DD HH:MM:SS"
   }),
-  // winston.format.printf(
-  //   info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
-  // ),
   winston.format.printf(
-    info => ` ${info.stack === undefined ? '' : info.stack}`
-    )
-
+    info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
+  )
 );
 
 const options = {
@@ -43,17 +36,6 @@ const options = {
       alignColorsAndTime
     )
   },
-  stack: {
-    level: 'debug',
-    handleExceptions: true,
-    format: winston.format.combine(
-      winston.format.splat(),
-      fix_errors(),
-      winston.format.colorize(), 
-      // alignColorsAndTime,
-      winston.format.printf(info => `${info.level.toUpperCase()} ${info.message} ${info.stack === undefined ? '' : info.stack}`)
-    )
-  },
 };
 
 // Instantiate a new Winston Logger with the settings defined above
@@ -61,7 +43,6 @@ const logger = new winston.createLogger({
   transports: [
     new winston.transports.File(options.file),
     new winston.transports.Console(options.console)
-    // new winston.transports.Console(options.stack)
   ],
   exitOnError: false, // do not exit on handled exceptions
 });
@@ -75,22 +56,7 @@ logger.stream = {
   
 }
 
-// winston.loggers.add("default");
-// const log = winston.loggers.get("default");
-// log.format = logform.format.errors({ stack: true });
-// /* get a `transportOptions` object and a `transportType` */
-// transportOptions.format = logform.format.combine(
-//   logform.format.timestamp(),
-//   logform.format.printf(myFormatter)
-// );
-// log.add(new winston.transports[transportType](transportOptions);
-
 module.exports = logger;
-
-
-
-
-
 
 /**
 |--------------------------------------------------------------------------
