@@ -172,6 +172,7 @@ app.use(function(err, req, res, next) {
 
   // include winston logging
   winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+  winston.error(`${err.stack === undefined ? '' : err.stack}`);
 
   // render the error page
   res.status(err.status || 500);
