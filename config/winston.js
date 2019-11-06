@@ -32,6 +32,7 @@ const options = {
     level: 'debug',
     handleExceptions: true,
     format: winston.format.combine(
+      winston.format.errors({ stack: true }),˝
       winston.format.colorize(), 
       alignColorsAndTime
     )
