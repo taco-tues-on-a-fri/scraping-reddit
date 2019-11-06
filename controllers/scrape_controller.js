@@ -1,6 +1,7 @@
 const appRoot   =  require('app-root-path');
 const async     =  require('async');
 const pushshift =  require(appRoot + '/lib/push-shift');
+const rp        =  require('request-promise');
 const Scrape    =  require(appRoot + '/models/scrape');
 
 const { body,validationResult } =  require('express-validator');

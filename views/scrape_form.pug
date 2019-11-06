@@ -5,8 +5,8 @@ block content
 
   form(method='POST' action='')
     .form-group
-      label.col-form-label.col-form-label-lg(for='scrape_url') Url to be scraped:
-      input.form-control.form-control-lg#scrape_url(type='text' placeholder='https://www.reddit.com/r/unhealthy-sofas' name='scrape_url' value=(undefined===user_input ? '' : user_input.scrape_url))
+      label.col-form-label.col-form-label-lg(for='form_response') Url to be scraped:
+      input.form-control.form-control-lg#form_response(type='text' placeholder='https://www.reddit.com/r/unhealthy-sofas' name='form_response' value=(undefined===user_input ? '' : user_input.form_response))
     button.btn.btn-primary(type='submit') Submit
   
   if errors
