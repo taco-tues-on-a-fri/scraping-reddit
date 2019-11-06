@@ -1,7 +1,9 @@
 const appRoot = require('app-root-path');
 const winston = require('winston');
+const { format } = winston;
+const { combine, label, json } = format;
 
-const alignColorsAndTime = winston.format.combine(
+const align_colors_time = winston.format.combine(
   winston.format.colorize({
     all:true
   }),
@@ -15,6 +17,34 @@ const alignColorsAndTime = winston.format.combine(
     info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
   )
 );
+winston.loggers.add('align_colors_time', {
+  level: 'debug',
+  handleExceptions: true,
+  format: winston.format.combine(
+    winston.format.colorize(), 
+    align_colors_time
+    ),
+  transports: [
+    new winston.transports.Console({ level: 'debug' }),
+  ]
+});
+
+//
+// Configure the logger for `error_log_file`
+//
+winston.loggers.add('error_log_file', {
+  level: 'error',
+  handleExceptions: true,
+  maxsize: 5242880, // 5MB
+  maxFiles: 5,
+  format: combine(
+      winston.format.json(),
+      winston.format.prettyPrint()
+  ),
+  transports: [
+    new winston.transports.File({ filename: `${appRoot}/logs/app.log` })
+  ]
+});
 
 const options = {
   file: {
@@ -33,7 +63,7 @@ const options = {
     handleExceptions: true,
     format: winston.format.combine(
       winston.format.colorize(), 
-      alignColorsAndTime
+      align_colors_time
     )
   },
 };
