@@ -102,7 +102,7 @@ const morgan_logger = winston.loggers.get('alignColorsAndTime');
 //   }
   
 // })
-logger.stream = stream {
+logger.stream = {
   write: function(message, encoding) {
     // use the 'info' log level so the output will be picked up by both transports (file and console)
     morgan_logger.info(message);
