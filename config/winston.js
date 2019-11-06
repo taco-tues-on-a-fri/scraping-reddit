@@ -1,20 +1,65 @@
 const appRoot = require('app-root-path');
 const winston = require('winston');
+const { format } = winston;
+const { combine, label, json } = format;
 
-const alignColorsAndTime = winston.format.combine(
-  winston.format.colorize({
-    all:true
-  }),
-  winston.format.label({
-    label:'[LOGGER]'
-  }),
-  winston.format.timestamp({
-    format:"YY-MM-DD HH:MM:SS"
-  }),
-  winston.format.printf(
-    info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
-  )
-);
+//
+// Configure the logger for `alignColorsAndTime`
+//
+winston.loggers.add('alignColorsAndTime', {
+  handleExceptions: true,
+  format: combine(
+    winston.format.colorize({
+      all:true
+    }),
+    winston.format.label({
+      label:'[LOGGER]'
+    }),
+    winston.format.timestamp({
+      format:"YY-MM-DD HH:MM:SS"
+    }),
+    winston.format.printf(
+      info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
+    )
+  ),
+  transports: [
+    new winston.transports.Console({ level: 'debug' }),
+  ]
+});
+
+//
+// Configure the logger for `category2`
+//
+winston.loggers.add('error_log_file', {
+  handleExceptions: true,
+  maxsize: 5242880, // 5MB
+  maxFiles: 5,
+  format: combine(
+      winston.format.json(),
+      winston.format.prettyPrint()
+  ),
+  transports: [
+    new winston.transports.File({ 
+      filename: `${appRoot}/logs/app.log`,
+      level: 'debug'
+    })
+  ]
+});
+
+// const alignColorsAndTime = winston.format.combine(
+//   winston.format.colorize({
+//     all:true
+//   }),
+//   winston.format.label({
+//     label:'[LOGGER]'
+//   }),
+//   winston.format.timestamp({
+//     format:"YY-MM-DD HH:MM:SS"
+//   }),
+//   winston.format.printf(
+//     info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
+//   )
+// );
 
 const options = {
   file: {
