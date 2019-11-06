@@ -172,6 +172,7 @@ app.use(function(err, req, res, next) {
 
   // include winston logging
   winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+  winston.error(err.stack);
 
   // render the error page
   res.status(err.status || 500);
@@ -180,3 +181,14 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+// app.use((error, req, res, next) => {
+//   // Sets HTTP status code
+//   res.status(error.status || 500)
+
+//   // Sends response
+//   res.json({
+//     status: error.status,
+//     message: error.message,
+//     stack: error.stack
+//   })
+// })
