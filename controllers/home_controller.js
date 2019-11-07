@@ -1,7 +1,8 @@
-const appRoot =  require('app-root-path');
-const async   =  require('async');
-const rp      =  require('request-promise')
-const Scrape  =  require(appRoot + '/models/scrape');
+const appRoot      =  require('app-root-path');
+const async        =  require('async');
+const rp           =  require('request-promise')
+const Scrape       =  require(appRoot + '/models/scrape');
+
 
 
 
