@@ -75,7 +75,7 @@ const search_comments_by_identifier = function (handed_url) {
 exports.pushshift_search_by_id_then_get_comments = async function (req, res, next) {
   let errors = validationResult(req);
 
-  let formatted_pushShift_comments = []
+  // let formatted_pushShift_comments = []   // probably not needed
   
   let url_container = {
     request_url: req.body.form_url,
@@ -90,57 +90,16 @@ exports.pushshift_search_by_id_then_get_comments = async function (req, res, nex
   }
 
   request(options_01)
+    .then(pushshift.comment_flattener_w_nested_generator())
     .then(json => res.json({ message: json }))
     .catch(err => next(err))
 };
 
 
+  // await request(options)
+  //   .then(json => res.json({ message: json }))
+  //   .catch(err => next(err))
 
-
-
-
-
-
-
-  async function main() {
-    const x = await asyncFunc(); // (A)
-    console.log('Result: '+x); // (B)
-
-    // Same as:
-    // asyncFunc()
-    // .then(x => console.log('Result: '+x));
-}
-main();
-
-  asyncFunc1()
-.then(result1 => {
-    // Use result1
-    return asyncFunction2(); // (A)
-})
-.then(result2 => { // (B)
-    // Use result2
-})
-.catch(error => {
-    // Handle errors of asyncFunc1() and asyncFunc2()
-});
-
-  
-    // form: {
-    //   // Like <input type="text" name="name">
-    //   name: 'Josh'
-    // },
-    // body: {
-    //   some: 'payload'
-    // }
-  };
-  
-  await request(options) pushshift.search_comments_by_identifier(req.body.scrape_url)
-  // returns: https://api.pushshift.io/reddit/comment/search/?link_id=7j0ec9&limit=20000
-
-  await request(options)
-    .then(json => res.json({ message: json }))
-    .catch(err => next(err))
-};
 
 //#endregion
 //|--------------------------------------------------------------------------
