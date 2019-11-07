@@ -19,7 +19,9 @@ let request_url = async function (handed_url) {
     let request_json = await rp(options)
     .then(function (results) {
       return request_json
-  } .catch(err => next(err))
+  })} catch(err) {
+      return next(err)
+    }
 };
 
 //#endregion
@@ -30,16 +32,18 @@ let request_url = async function (handed_url) {
 //#region request_url_03
 
 exports.request_url_03 = async function (req, res, next) {
-  let options = {
-    method: 'GET',
-    uri: 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json',
-    json: true // Automatically stringifies the body to JSON
-  };
-
-  await rp(options)
+  let url = 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json',
+  try {
+    const request_url = await request_url(url)
     .then(json => res.json({ message: json }))
-    .catch(err => next(err))
+  } catch(err) {
+    return next(err)
+  }
 };
+
+  // await rp(options)
+  //   .then(json => res.json({ message: json }))
+  //   .catch(err => next(err))
 
 //#endregion
 //|--------------------------------------------------------------------------

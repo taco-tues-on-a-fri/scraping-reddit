@@ -22,5 +22,6 @@ router.get('/request_url_01', home_controller.request_url_01);
 
 router.get('/request_url_02', home_controller.request_url_02);
 
+router.get('/request_url_03', home_controller.request_url_03);
 
 module.exports = router;
