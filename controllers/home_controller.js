@@ -5,17 +5,35 @@ const Scrape       =  require(appRoot + '/models/scrape');
 const asyncHandler =  require(appRoot + '/lib/async-handler');
 // require('express-async-errors');
 
+//|--------------------------------------------------------------------------
+//#region request_url_helper-a-fy - regular function version
 
+let request_url = function (handed_url) {
+  let options = {
+    method: 'GET',
+    uri: handed_url,
+    json: true // Automatically stringifies the body to JSON
+  };
+
+  rp(options)
+  .then(function (results) {
+    return results
+  }) .catch(err => next(err))
+
+};
+
+//#endregion
+//|--------------------------------------------------------------------------
 
 
 //|--------------------------------------------------------------------------
-//#region request_url_helper-a-fy
+//#region request_url_helper-a-fy - async version
 // asyncHandler(async(req, res) => {
 //      const result = await request('http://example.com');
 //      res.end(result);
 //    }));
 
-let request_url = asyncHandler(async function (handed_url) {
+let async_request_url = asyncHandler(async function (handed_url) {
   let options = {
     method: 'GET',
     uri: handed_url,
@@ -40,7 +58,7 @@ exports.request_url_03 = asyncHandler(async function(req, res) {
   let url = 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json'
 
   const response_url = await request_url(url)
-  .then(json => res.json({ message: json }))
+  .then(response_url => res.json({ message: response_url }))
   .catch(err => next(err))
 })
 
