@@ -14,19 +14,9 @@ exports.request_url_02 = async function (req, res, next) {
     json: true // Automatically stringifies the body to JSON
   };
 
-  // const url = 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json';
   await rp(options)
     .then(json => res.json({ message: json }))
     .catch(err => next(err))
-
-  // const response = await rp(url);
-  // const json = response.body
-  // .then(json => res.json({ message: json }))
-  // // .then(() => res.json({ message: json }) )
-  // .catch(err => next(err))
-
-
-  // .then(JSON.parse(response.body))
 };
 
 //#endregion
