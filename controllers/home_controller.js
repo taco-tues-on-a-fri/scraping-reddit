@@ -36,15 +36,15 @@ let request_url = asyncHandler(async function (handed_url) {
 //|--------------------------------------------------------------------------
 //#region request_url_03
 
-exports.request_url_03 = async function (req, res, next) {
-  let url = 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json',
-  try {
-    const request_url = await request_url(url)
-    .then(json => res.json({ message: json }))
-  } catch(err) {
-    return next(err)
-  }
-};
+exports.request_url_03 = asyncHandler(async function(req, res) {
+  let url = 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json'
+
+  const response_url = await request_url(url)
+  .then(json => res.json({ message: json }))
+  .catch(err => next(err))
+})
+
+  
 
   // await rp(options)
   //   .then(json => res.json({ message: json }))
