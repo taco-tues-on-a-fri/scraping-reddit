@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@types/node": "^12.12.6",
+    "eslint": "^6.6.0",
     "nodemon": "^1.19.4"
   }
 }
