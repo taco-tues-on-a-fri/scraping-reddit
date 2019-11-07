@@ -12,7 +12,7 @@ const scrape_controller = require(appRoot + '/controllers/scrape_controller');
 // GET/POST request for creating a Scrape
 // ! Must come before routes that display Scrape (uses _id).
 router.get('/scrape/create', scrape_controller.scrape_create_get);
-router.post('/scrape/create', scrape_controller.scrape_create_post);
+router.post('/scrape/create', scrape_controller.request_url_03);
 
 
 // GET/POST request to delete Scrape
