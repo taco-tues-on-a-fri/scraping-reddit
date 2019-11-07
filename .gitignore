@@ -3,6 +3,8 @@
 notes.*
 *.env
 vscode/
+notes/
+idea/
 
 # User-specific files
 *.suo
