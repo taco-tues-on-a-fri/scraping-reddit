@@ -89,7 +89,7 @@ exports.pushshift_search_by_id_then_get_comments = async function (req, res, nex
     json: true
   }
 
-  await request(options_01)
+  request(options_01)
     .then(json => res.json({ message: json }))
     .catch(err => next(err))
 };
