@@ -1,29 +1,33 @@
 const appRoot      =  require('app-root-path');
-const async        =  require('async');
+const async        =  require('async')
 const rp           =  require('request-promise')
 const Scrape       =  require(appRoot + '/models/scrape');
+const asyncHandler =  require(appRoot + '/lib/async-handler');
+// require('express-async-errors');
 
 
 
 
 //|--------------------------------------------------------------------------
 //#region request_url_helper-a-fy
+// asyncHandler(async(req, res) => {
+//      const result = await request('http://example.com');
+//      res.end(result);
+//    }));
 
-let request_url = async function (handed_url) {
-  try {
-    let options = {
-      method: 'GET',
-      uri: handed_url,
-      json: true // Automatically stringifies the body to JSON
-    };
+let request_url = asyncHandler(async function (handed_url) {
+  let options = {
+    method: 'GET',
+    uri: handed_url,
+    json: true // Automatically stringifies the body to JSON
+  };
 
-    let request_json = await rp(options)
-    .then(function (results) {
-      return request_json
-  })} catch(err) {
-      return next(err)
-    }
-};
+  await rp(options)
+  .then(function (results) {
+    return results
+  }) .catch(err => next(err))
+
+});
 
 //#endregion
 //|--------------------------------------------------------------------------
