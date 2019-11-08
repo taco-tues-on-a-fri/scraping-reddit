@@ -31,14 +31,14 @@ router.get('/request_url_01', home_controller.request_url_01);
 router.get('/request_url_02', home_controller.request_url_02);
 
 
-// GET | request_url_fs_save
+// GET | request_url_fs_save_01
 //|------------------------------------------------------------------------
-router.get('/request_url_fs_save', home_controller.request_url_fs_save);
+router.get('/request_url_fs_save_01', home_controller.request_url_fs_save_01);
 
 
-// GET | request_url_04
+// GET | request_url_fs_save_02
 //|------------------------------------------------------------------------
-// router.get('/request_url_04', home_controller.request_url_04);
+router.get('/request_url_fs_save_02', home_controller.request_url_fs_save_02);
 
 // GET | request_url_04
 //|------------------------------------------------------------------------

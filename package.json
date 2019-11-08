@@ -8,7 +8,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "debug": "nodemon --inspect ./bin/www"
+    "debug": "nodemon --inspect ./bin/www",
+    "debug-stack": "nodemon --inspect ./bin/www --async-stack-traces"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",
