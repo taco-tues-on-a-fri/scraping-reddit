@@ -9,6 +9,7 @@ const Scrape    =  require(appRoot + '/models/scrape');
 
 const { body,validationResult } =  require('express-validator');
 const { sanitizeBody }          =  require('express-validator');
+require('express-async-errors');
 
 //#endregion
 //|------------------------------------------------------------------------
