@@ -9,6 +9,7 @@ const Scrape    =  require(appRoot + '/models/scrape');
 
 const { body,validationResult } =  require('express-validator');
 const { sanitizeBody }          =  require('express-validator');
+require('express-async-errors');
 
 //#endregion
 //|------------------------------------------------------------------------
@@ -29,35 +30,6 @@ exports.scrape_create_get = function(req, res, next) {
     title: 'Create Scrape'
   }
   );
-};
-
-//#endregion
-//|------------------------------------------------------------------------
-
-
-
-
-
-//|------------------------------------------------------------------------
-//#region | LIVE | test version of scrape create POST | request_url_03 
-/**
-|--------------------------------------------------------------------------
-|  request_url_03
-|--------------------------------------------------------------------------
-| 
-|
-*/
-
-exports.request_url_03 = async function (req, res, next) {
-  let options = {
-    method: 'GET',
-    uri: req.body.form_response,
-    json: true 
-  };
-
-  await rp(options)
-    .then(json => res.json({ message: json }))
-    .catch(err => next(err))
 };
 
 //#endregion
