@@ -5,7 +5,6 @@ const appRoot      =  require('app-root-path');
 const async        =  require('async')
 const rp           =  require('request-promise')
 const Scrape       =  require(appRoot + '/models/scrape');
-const asyncHandler =  require(appRoot + '/lib/async-handler');
 require('express-async-errors');
 
 //#endregion
