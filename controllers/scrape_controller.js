@@ -15,8 +15,13 @@ const { sanitizeBody }          =  require('express-validator');
 
 
 //|------------------------------------------------------------------------
-//#region | Display Scrape create form on GET
-// Works
+//#region | LIVE | display scrape create form on GET | scrape_create_get
+/**
+|--------------------------------------------------------------------------
+|  scrape_create_get
+|--------------------------------------------------------------------------
+|
+*/
 
 exports.scrape_create_get = function(req, res, next) {
   res.render('scrape_form', 
@@ -35,6 +40,14 @@ exports.scrape_create_get = function(req, res, next) {
 
 //|------------------------------------------------------------------------
 //#region | DISABLED | original pushshift build scrape create POST | search_by_id_then_get_comments
+/**
+|--------------------------------------------------------------------------
+|  search_by_id_then_get_comments
+|--------------------------------------------------------------------------
+|
+| don't think this is a correct approach
+|
+*/
 
 // exports.scrape_create_post = pushshift.search_by_id_then_get_comments
 
@@ -42,9 +55,18 @@ exports.scrape_create_get = function(req, res, next) {
 //|------------------------------------------------------------------------
 
 
+
+
+
 //|------------------------------------------------------------------------
 //#region | LIVE | test version of scrape create POST | request_url_03 
-// Works
+/**
+|--------------------------------------------------------------------------
+|  request_url_03
+|--------------------------------------------------------------------------
+| 
+|
+*/
 
 exports.request_url_03 = async function (req, res, next) {
   let options = {
@@ -67,7 +89,6 @@ exports.request_url_03 = async function (req, res, next) {
 
 //|------------------------------------------------------------------------
 //#region | LIVE | promise version of scrape create POST | pushshift_search_by_id_then_get_comments
-// CURRENT WORK AREA
 /**
 |--------------------------------------------------------------------------
 |  pushshift_search_by_id_then_get_comments
@@ -77,7 +98,7 @@ exports.request_url_03 = async function (req, res, next) {
 | https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/
 |
 | formatted_url: https://api.pushshift.io/reddit/comment/search/?link_id=7j0ec9&limit=20000
-}
+|
 */
 
 exports.pushshift_search_by_id_then_get_comments = async function (req, res, next) {
@@ -99,3 +120,27 @@ exports.pushshift_search_by_id_then_get_comments = async function (req, res, nex
 };
 //#endregion
 //|------------------------------------------------------------------------
+
+
+
+
+//|------------------------------------------------------------------------
+//#region | BLANK | description | function_name
+/**
+|--------------------------------------------------------------------------
+|  function_name
+|--------------------------------------------------------------------------
+|
+*/
+
+// exports.function_name = function(req, res, next) {
+//   res.render('scrape_form', 
+//   {
+//     title: 'Create Scrape'
+//   }
+//   );
+// };
+
+//#endregion
+//|------------------------------------------------------------------------
+
