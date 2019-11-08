@@ -31,26 +31,36 @@ require('express-async-errors');
 //|--------------------------------------------------------------------------
 
 //|------------------------------------------------------------------------
-//#region | ERROR | testing request-promise | request_url_03
+//#region | TEST | testing fs helper function | request_url_fs_save
 /**
 |--------------------------------------------------------------------------
-|  request_url_03
+|  request_url_fs_save
 |--------------------------------------------------------------------------
+| 
+| options = {  path: '', read_file_name: '', data_to_push: []  }
 |
 */
 
-let request_url_03 = async function (req, res, next) {
+exports.request_url_fs_save = async function (req, res, next) {
   let options = {
     method: 'GET',
-    uri: req,
-    json: true
+    uri: 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json',
+    json: true 
   };
 
+  let fs_options = {  
+    path: '/logs/json/', 
+    read_file_name: 'thrilling_woodcock.json', 
+    data_to_push: []  
+  }
+
   await rp(options)
+    .then(data => fs_options.data_to_push = data) 
     .then(json => res.json({ message: json }))
     .catch(err => next(err))
-};
-
+  };
+  
+  // .then(json => pushshift.comment_flattener_w_nested_generator(json))
 //#endregion
 //|------------------------------------------------------------------------
 
