@@ -22,10 +22,9 @@ require('express-async-errors');
 | 
 |  This attempt is to take the json formatting away from request-promise module
 |  Ended in failure.  Still getting circular errors.
-|  Code editor is acting weird too - lagging, port issues, and terminal isn't auto scrolling consistantly
+|  Code editor is acting weird too - lagging, port issues, and terminal isn't auto scrolling consistently
 |
-|
-| options = {  path: '', read_file_name: '', data_to_push: []  }
+|  update: aiming to comment out the response json and just try to write the file.
 |
 */
 
@@ -75,6 +74,7 @@ exports.request_url_fs_save_02 = async function (req, res, next) {
 
   await rp(options)
     .then(json => helper.fs_read_write_02(file_name, json)) 
+    // .then(json => res.json({ message: json }))
     .then(json => res.json({ message: json }))
     .catch(err => next(err))
 
@@ -108,7 +108,7 @@ exports.request_url_fs_save_02 = async function (req, res, next) {
 
   await rp(options)
     .then(json => helper.fs_read_write_02(file_name, json)) 
-    .then(json => res.json({ message: json }))
+    .then(() => res.json({ message: 'success?' }))
     .catch(err => next(err))
 
 };
