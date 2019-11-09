@@ -50,7 +50,7 @@ exports.index = function(req, res) {
 exports.request_url_fs_save = async function (req, res, next) {
   let options = {
     method: 'GET',
-    uri: 'https://www.reddit.com/r/ethtrader/comments/dtdsmm/ethereum_istanbul_hard_fork_release_date/',
+    uri: 'https://www.reddit.com/r/ethtrader/comments/dtdsmm/ethereum_istanbul_hard_fork_release_date/.json',
     json: true
   };
 
