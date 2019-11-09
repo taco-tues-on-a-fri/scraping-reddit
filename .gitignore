@@ -5,6 +5,7 @@ notes.*
 vscode/
 notes/
 idea/
+logs/
 
 # User-specific files
 *.suo
