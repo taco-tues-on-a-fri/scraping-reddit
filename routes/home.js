@@ -20,6 +20,11 @@ const scrape_controller =  require(appRoot + '/controllers/scrape_controller');
 //|------------------------------------------------------------------------
 router.get('/', home_controller.index);
 
+// GET | TEST | request_url_fs_save
+//|------------------------------------------------------------------------
+router.get('/request_url_fs_save', home_controller.request_url_fs_save);
+
+
 
 module.exports = router;
 
