@@ -13,6 +13,71 @@ require('express-async-errors');
 
 
 
+//|------------------------------------------------------------------------
+//#region | TEST | 02 attempt - testing fs helper function | request_url_fs_save_03
+/**
+|--------------------------------------------------------------------------
+|  request_url_fs_save_03
+|--------------------------------------------------------------------------
+| 
+| options = {  path: '', read_file_name: '', data_to_push: []  }
+|
+*/
+
+exports.request_url_fs_save_03 = async function (req, res, next) {
+  let options = {
+    method: 'GET',
+    uri: 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json',
+    json: true
+  };
+
+  let file_name = 'thrilling_woodcock.json' 
+
+
+  await rp(options)
+    .then(json => helper.fs_read_write_02(file_name, json)) 
+    .then(json => res.json({ message: json }))
+    .catch(err => next(err))
+
+};
+//#endregion
+//|------------------------------------------------------------------------
+
+
+
+
+
+//|------------------------------------------------------------------------
+//#region | TEST | 02 attempt - testing fs helper function | request_url_fs_save_02
+/**
+|--------------------------------------------------------------------------
+|  request_url_fs_save_02
+|--------------------------------------------------------------------------
+| 
+| options = {  path: '', read_file_name: '', data_to_push: []  }
+|
+*/
+
+exports.request_url_fs_save_02 = async function (req, res, next) {
+  let options = {
+    method: 'GET',
+    uri: 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json',
+    json: true
+  };
+
+  let file_name = 'thrilling_woodcock.json' 
+
+
+  await rp(options)
+    .then(json => helper.fs_read_write_02(file_name, json)) 
+    .then(json => res.json({ message: json }))
+    .catch(err => next(err))
+
+};
+//#endregion
+//|------------------------------------------------------------------------
+
+
 
 
 //|------------------------------------------------------------------------
