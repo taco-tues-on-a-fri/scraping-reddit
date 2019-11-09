@@ -45,6 +45,11 @@ router.get('/request_url_fs_save_02', home_controller.request_url_fs_save_02);
 //|------------------------------------------------------------------------
 router.get('/request_url_fs_save_03', home_controller.request_url_fs_save_03);
 
+//GET | IDEA | parse_reddit_url
+//|------------------------------------------------------------------------
+router.get('/parse_reddit_url', home_controller.parse_reddit_url);
+
+
 // GET | request_url_04
 //|------------------------------------------------------------------------
 // router.get('/request_url_04', home_controller.request_url_04);
@@ -57,3 +62,4 @@ module.exports = router;
 
 // POST | name
 //|------------------------------------------------------------------------
+

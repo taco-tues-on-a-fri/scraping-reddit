@@ -6,8 +6,78 @@ const async        =  require('async')
 const helper       =  require(appRoot + '/lib/helper');
 const rp           =  require('request-promise')
 const Scrape       =  require(appRoot + '/models/scrape');
+const URLToolkit   =  require('url-toolkit');
 
 require('express-async-errors');
+//#endregion
+//|------------------------------------------------------------------------
+
+
+
+
+
+
+//|------------------------------------------------------------------------
+//#region | IDEA | parse reddit url with REGEX  | parse_reddit_regex_01
+/**
+|--------------------------------------------------------------------------
+|  parse_reddit_regex_01
+|--------------------------------------------------------------------------
+|
+| Notes:
+|  Python regex - delimiter issue
+| (^https?://)?(\w+)?\.?(reddit\.com/|redd\.it/)(r/\w+/)?(comments/)?(\w+)
+|
+|
+|
+*/
+
+exports.parse_reddit_regex_01 = function(req, res, next) {
+  let reddit_url = 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json'
+  let  parsed_url = URLToolkit.parseURL(reddit_url); 
+
+  console.log(parsed_url)
+  res.json({  message: parsed_url });
+};
+
+//#endregion
+//|------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+//|------------------------------------------------------------------------
+//#region | IDEA | parse reddit url with URLToolkit  | parse_reddit_url
+/**
+|--------------------------------------------------------------------------
+|  parse_reddit_url
+|--------------------------------------------------------------------------
+|
+| works but only outputs:
+| {
+|  scheme: 'https:',
+|  netLoc: '//www.reddit.com',
+|  path: '/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json',
+|  params: '',
+|  query: '',
+|  fragment: ''
+| }
+|
+*/
+
+exports.parse_reddit_url = function(req, res, next) {
+  let reddit_url = 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json'
+  let  parsed_url = URLToolkit.parseURL(reddit_url); 
+
+  console.log(parsed_url)
+  res.json({  message: parsed_url });
+};
+
 //#endregion
 //|------------------------------------------------------------------------
 

@@ -33,6 +33,7 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "request-promise-native": "^1.0.8",
+    "url-toolkit": "^2.1.6",
     "winston": "^3.2.1"
   },
   "devDependencies": {
