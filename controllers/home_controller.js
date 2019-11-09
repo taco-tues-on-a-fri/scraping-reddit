@@ -14,12 +14,17 @@ require('express-async-errors');
 
 
 //|------------------------------------------------------------------------
-//#region | TEST | 02 attempt - testing fs helper function | request_url_fs_save_03
+//#region | TEST | 03 attempt - testing fs helper function | request_url_fs_save_03
 /**
 |--------------------------------------------------------------------------
 |  request_url_fs_save_03
 |--------------------------------------------------------------------------
 | 
+|  This attempt is to take the json formatting away from request-promise module
+|  Ended in failure.  Still getting circular errors.
+|  Code editor is acting weird too - lagging, port issues, and terminal isn't auto scrolling consistantly
+|
+|
 | options = {  path: '', read_file_name: '', data_to_push: []  }
 |
 */
@@ -28,7 +33,7 @@ exports.request_url_fs_save_03 = async function (req, res, next) {
   let options = {
     method: 'GET',
     uri: 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json',
-    json: true
+    json: false
   };
 
   let file_name = 'thrilling_woodcock.json' 
