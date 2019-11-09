@@ -61,7 +61,6 @@ exports.request_url_fs_save = async function (req, res, next) {
     .then(json => helper.fs_read_write(file_name, json)) 
     .then(() => res.json({ message: 'Successfully scraped and saved reddit' }))
     .catch(err => next(err))
-
 };
 //#endregion
 //|------------------------------------------------------------------------
