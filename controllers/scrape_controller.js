@@ -95,7 +95,7 @@ exports.regex_pushshift_search_by_id_then_get_comments = async function (req, re
   let errors = validationResult(req);
 
   let request_url = req.body.form_response
-  let reddit_linkid = regex.reddit_url_parse(request_url)
+  let reddit_linkid = regex.reddit_linkid(request_url)
   let formatted_url= pushshift.create_pushshift_url(reddit_linkid)
 
   let options = {
