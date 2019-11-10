@@ -41,7 +41,7 @@ exports.scrape_create_get = function(req, res, next) {
 
 
 //|------------------------------------------------------------------------
-//#region | LIVE | promise version of scrape create POST | pushshift_search_by_id_then_get_comments
+//#region | OUTDATED | promise version of scrape create POST | pushshift_search_by_id_then_get_comments
 /**
 |--------------------------------------------------------------------------
 |  pushshift_search_by_id_then_get_comments
@@ -78,7 +78,7 @@ exports.pushshift_search_by_id_then_get_comments = async function (req, res, nex
 
 
 //|------------------------------------------------------------------------
-//#region | TEST | REGEX promise version of scrape create POST | regex_pushshift_search_by_id_then_get_comments
+//#region | LIVE | REGEX promise version of scrape create POST | regex_pushshift_search_by_id_then_get_comments
 /**
 |--------------------------------------------------------------------------
 |  regex_pushshift_search_by_id_then_get_comments
@@ -116,7 +116,7 @@ exports.regex_pushshift_search_by_id_then_get_comments = async function (req, re
 
 
 //|------------------------------------------------------------------------
-//#region | LIVE | test version of scrape create POST | request_url_03 
+//#region | OUTDATED | test version of scrape create POST | request_url_03 
 /**
 |--------------------------------------------------------------------------
 |  request_url_03
