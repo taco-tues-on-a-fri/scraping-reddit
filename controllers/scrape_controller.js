@@ -41,55 +41,6 @@ exports.scrape_create_get = function(req, res, next) {
 
 
 //|------------------------------------------------------------------------
-//#region | DISABLED | original pushshift build scrape create POST | search_by_id_then_get_comments
-/**
-|--------------------------------------------------------------------------
-|  search_by_id_then_get_comments
-|--------------------------------------------------------------------------
-|
-| don't think this is a correct approach
-|
-*/
-
-// exports.scrape_create_post = pushshift.search_by_id_then_get_comments
-
-//#endregion
-//|------------------------------------------------------------------------
-
-
-
-
-
-//|------------------------------------------------------------------------
-//#region | LIVE | test version of scrape create POST | request_url_03 
-/**
-|--------------------------------------------------------------------------
-|  request_url_03
-|--------------------------------------------------------------------------
-| 
-|
-*/
-
-exports.request_url_03 = async function (req, res, next) {
-  let options = {
-    method: 'GET',
-    uri: req.body.form_response,
-    json: true 
-  };
-
-  await rp(options)
-    .then(json => res.json({ message: json }))
-    .catch(err => next(err))
-};
-
-//#endregion
-//|------------------------------------------------------------------------
-
-
-
-
-
-//|------------------------------------------------------------------------
 //#region | LIVE | promise version of scrape create POST | pushshift_search_by_id_then_get_comments
 /**
 |--------------------------------------------------------------------------
@@ -160,6 +111,35 @@ exports.regex_pushshift_search_by_id_then_get_comments = async function (req, re
 };
 //#endregion
 //|------------------------------------------------------------------------
+
+
+
+
+//|------------------------------------------------------------------------
+//#region | LIVE | test version of scrape create POST | request_url_03 
+/**
+|--------------------------------------------------------------------------
+|  request_url_03
+|--------------------------------------------------------------------------
+| 
+|
+*/
+
+exports.request_url_03 = async function (req, res, next) {
+  let options = {
+    method: 'GET',
+    uri: req.body.form_response,
+    json: true 
+  };
+
+  await rp(options)
+    .then(json => res.json({ message: json }))
+    .catch(err => next(err))
+};
+
+//#endregion
+//|------------------------------------------------------------------------
+
 
 
 
