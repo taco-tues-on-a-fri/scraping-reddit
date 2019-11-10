@@ -1,8 +1,9 @@
-
 *.code-workspace
 notes.*
 *.env
 vscode/
+notes/
+idea/
 logs/
 merge.*
 
