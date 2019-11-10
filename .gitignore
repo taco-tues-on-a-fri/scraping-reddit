@@ -4,6 +4,7 @@ notes.*
 *.env
 vscode/
 logs/
+merge.*
 
 # User-specific files
 *.suo
