@@ -1,11 +1,14 @@
 
 *.code-workspace
-notes.*
-*.env
 vscode/
-notes/
-idea/
+*.env
 logs/
+*.log
+notes/
+notes.*
+idea/
+idea.*
+merge/
 merge.*
 
 # User-specific files
