@@ -4,6 +4,7 @@
 const appRoot   =  require('app-root-path');
 const async     =  require('async');
 const pushshift =  require(appRoot + '/lib/push-shift');
+const regex     =  require(appRoot + '/lib/regex');
 const rp        =  require('request-promise-native');
 const Scrape    =  require(appRoot + '/models/scrape');
 
