@@ -77,6 +77,46 @@ exports.pushshift_search_by_id_then_get_comments = async function (req, res, nex
 
 
 
+
+//|------------------------------------------------------------------------
+//#region | LIVE | REGEX promise version of scrape create POST | regex_pushshift_search_by_id_then_get_comments
+/**
+|--------------------------------------------------------------------------
+|  regex_pushshift_search_by_id_then_get_comments
+|--------------------------------------------------------------------------
+| 
+| incoming req = form fill in req.body.form_response with a value url string:
+| https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/
+|
+| formatted_url: https://api.pushshift.io/reddit/comment/search/?link_id=7j0ec9&limit=20000
+|
+*/
+
+exports.regex_pushshift_search_by_id_then_get_comments = async function (req, res, next) {
+  let errors = validationResult(req);
+
+  let request_url = req.body.form_response
+  let reddit_linkid = regex.reddit_linkid(request_url)
+  let formatted_url= pushshift.create_pushshift_url(reddit_linkid)
+
+  let options = {
+    method: 'GET',
+    uri: formatted_url,
+    json: true
+  }
+
+  rp(options)
+    .then(json => pushshift.comment_flattener_w_nested_generator(json))
+    .then(json => res.json({ message: json }))
+    .catch(err => next(err))
+};
+//#endregion
+//|------------------------------------------------------------------------
+
+
+
+
+
 //|------------------------------------------------------------------------
 //#region | BLANK | description | function_name
 /**
