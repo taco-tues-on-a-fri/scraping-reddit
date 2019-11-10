@@ -41,7 +41,7 @@ exports.scrape_create_get = function(req, res, next) {
 
 
 //|------------------------------------------------------------------------
-//#region | LIVE | promise version of scrape create POST | pushshift_search_by_id_then_get_comments
+//#region | OUTDATED | promise version of scrape create POST | pushshift_search_by_id_then_get_comments
 /**
 |--------------------------------------------------------------------------
 |  pushshift_search_by_id_then_get_comments
