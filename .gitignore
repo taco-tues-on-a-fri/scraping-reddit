@@ -1,4 +1,3 @@
-
 *.code-workspace
 vscode/
 *.env
@@ -10,6 +9,8 @@ idea/
 idea.*
 merge/
 merge.*
+template.*
+templates/
 
 # User-specific files
 *.suo
