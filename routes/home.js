@@ -49,6 +49,10 @@ router.get('/request_url_fs_save_03', home_controller.request_url_fs_save_03);
 //|------------------------------------------------------------------------
 router.get('/parse_reddit_url', home_controller.parse_reddit_url);
 
+//GET | IDEA | parse_reddit_regex_01
+//|------------------------------------------------------------------------
+router.get('/parse_reddit_regex_01', home_controller.parse_reddit_regex_01);
+
 
 // GET | request_url_04
 //|------------------------------------------------------------------------

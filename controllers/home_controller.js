@@ -4,6 +4,7 @@
 const appRoot      =  require('app-root-path');
 const async        =  require('async')
 const helper       =  require(appRoot + '/lib/helper');
+const regex        =  require(appRoot + '/lib/regex');
 const rp           =  require('request-promise')
 const Scrape       =  require(appRoot + '/models/scrape');
 const URLToolkit   =  require('url-toolkit');
@@ -34,10 +35,12 @@ require('express-async-errors');
 
 exports.parse_reddit_regex_01 = function(req, res, next) {
   let reddit_url = 'https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/.json'
-  let  parsed_url = URLToolkit.parseURL(reddit_url); 
+  let parsed_url = URLToolkit.parseURL(reddit_url);
+  
+  let regex_groups = regex.reddit_url_parse(reddit_url)
 
-  console.log(parsed_url)
-  res.json({  message: parsed_url });
+  console.log(regex_groups)
+  res.json({  message: regex_groups });
 };
 
 //#endregion
