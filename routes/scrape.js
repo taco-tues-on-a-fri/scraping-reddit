@@ -22,8 +22,11 @@ router.get('/scrape/create', scrape_controller.scrape_create_get);
 
 // POST | regex_pushshift_search_by_id_then_get_comments
 //|------------------------------------------------------------------------
-router.post('/scrape/create', scrape_controller.regex_pushshift_search_by_id_then_get_comments);
+// router.post('/scrape/create', scrape_controller.regex_pushshift_search_by_id_then_get_comments);
 
+// POST | pug_pushshift_search_by_id_then_get_comments
+//|------------------------------------------------------------------------
+router.post('/scrape/create', scrape_controller.pug_pushshift_search_by_id_then_get_comments);
 
 module.exports = router;
 

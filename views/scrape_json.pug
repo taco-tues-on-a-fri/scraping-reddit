@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .page-header#banner
+    .row
+      .col-lg-8.col-md-7.col-sm-6
+        h1= title
+        p.lead Give 'em the scrapes!
+      .col-lg-4.col-md-5.col-sm-6
+        p.lead Look at me.
+  .row
+    table.table.table-striped
+      tr
+        th author
+        th body
+
+      each n in json_data
+        tr
+          td= n.author
+          td= n.body
+    //- .list-group
+      each scrape in scrape_list
+        a.list-group-item.list-group-item-action(href=scrape.url) #{scrape.title}
+      else
+        No scrapes to display.
+  .row
+    !=JSON.stringify(json_data)
+
+
