@@ -4,6 +4,7 @@
 const appRoot   =  require('app-root-path');
 const async     =  require('async');
 const pushshift =  require(appRoot + '/lib/push-shift');
+const reddit    =  require(appRoot + '/lib/reddit');
 const regex     =  require(appRoot + '/lib/regex');
 const rp        =  require('request-promise-native');
 const Scrape    =  require(appRoot + '/models/scrape');
@@ -33,6 +34,33 @@ exports.scrape_create_get = function(req, res, next) {
   );
 };
 
+//#endregion
+//|------------------------------------------------------------------------
+
+
+
+
+
+//|------------------------------------------------------------------------
+//#region | BUILD | promise version of REDDIT scrape create POST | reddit_scrape
+/**
+|--------------------------------------------------------------------------
+|  reddit_scrape
+|--------------------------------------------------------------------------
+|
+| NOTES:  might have an issue with how to hand the different urls to rp(options) Object, can i name it different ones?
+|
+*/
+
+exports.reddit_scrape = async function (req, res, next) {
+  const request_url = req.body.form_response;
+  
+  rp({ uri: reddit.create_reddit_url(request_url, reddit.sort_method.sort_best), json: true })
+    .then(json => reddit.flatten_comments_w_nested_generator(json))
+    .then(json => res.json({ message: json }))
+    .catch(err => next(err))
+
+};
 //#endregion
 //|------------------------------------------------------------------------
 
