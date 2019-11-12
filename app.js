@@ -3,9 +3,9 @@
 | Scraping Reddit
 |--------------------------------------------------------------------------
 |
-| TODO:
-| * Configure index.pug line 24 for scrape list link
-| * Configure layout.pug line 26+ for nav bar links
+| //TODO Configure index.pug line 24 for scrape list link
+| //TODO Configure layout.pug line 26+ for nav bar links
+| //TODO deal with favion error
 */
 
 
