@@ -67,7 +67,7 @@ exports.pushshift_search_by_id_then_get_comments = async function (req, res, nex
   }
 
   rp(options)
-    .then(json => pushshift.comment_flattener_w_nested_generator(json))
+    .then(json => pushshift.retrieve_comments_w_nested_generator(json))
     .then(json => res.json({ message: json }))
     .catch(err => next(err))
 };
@@ -106,7 +106,7 @@ exports.pug_pushshift_search_by_id_then_get_comments = async function (req, res,
   }
 
   rp(options)
-    .then(json => pushshift.comment_flattener_w_nested_generator(json))
+    .then(json => pushshift.retrieve_comments_w_nested_generator(json))
     .then(json => res.render('scrape_json', { title: 'Scrape JSON', json_data: json }))
     .catch(err => next(err))
 };
@@ -144,7 +144,7 @@ exports.regex_pushshift_search_by_id_then_get_comments = async function (req, re
   }
 
   rp(options)
-    .then(json => pushshift.comment_flattener_w_nested_generator(json))
+    .then(json => pushshift.retrieve_comments_w_nested_generator(json))
     .then(json => res.json({ message: json }))
     .catch(err => next(err))
 };
