@@ -8,11 +8,15 @@ block content
       label.col-form-label.col-form-label-lg(for='form_response') Url to be scraped:
       input.form-control.form-control-lg#form_response(type='text' placeholder='https://www.reddit.com/r/unhealthy-sofas' name='form_response' value=(undefined===user_input ? '' : user_input.form_response))
     <div class="form-group">
-      <select class="custom-select">
+      label(for="sort-method")
+      <select#s-method class="custom-select">
         <option selected="">Sort Method</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option value="sort_best">Best</option>
+        <option value="sort_controversial">Controversial</option>
+        <option value="sort_new">New</option>
+        <option value="sort_old">Old</option>
+        <option value="sort_top">Top</option>
+        <option value="sort_qa">Q&A</option>
       </select>
     </div>
     button.btn.btn-primary(type='submit') Submit
@@ -27,3 +31,18 @@ block content
             ul
               for error in errors
                 li!= error.msg
+
+.form-group
+  label(for='sort_method')
+  select#sort_method.form-control(type='select' placeholder='Sort Method' name='sort_method' required='true')
+    option(value=(undefined===user_i))
+
+
+
+<option selected="">Sort Method</option>
+        <option value="sort_best">Best</option>
+        <option value="sort_controversial">Controversial</option>
+        <option value="sort_new">New</option>
+        <option value="sort_old">Old</option>
+        <option value="sort_top">Top</option>
+        <option value="sort_qa">Q&A</option>
