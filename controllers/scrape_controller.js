@@ -200,7 +200,6 @@ exports.reddit_scrape_n_sort_post = async function (req, res, next) {
   const errors = validationResult(req);  // TODO finish adding the full validation code
 
   const request_url = req.body.form_response
-  let formatted_url= reddit.create_reddit_url(reddit_linkid) // change
 
   rp({ uri: reddit.create_reddit_url(request_url, reddit.sort_method.sort_best), json: true })
     .then(json => reddit.flatten_comments_w_nested_generator(json))
