@@ -40,6 +40,16 @@ router.get('/scrape/pushshift_scrape_n_sort', scrape_controller.scrape_create_ge
 router.post('/scrape/pushshift_scrape_n_sort', scrape_controller.pushshift_scrape_n_sort_post);
 module.exports = router;
 
+// GET | reddit_scrape_n_sort_get
+//|------------------------------------------------------------------------
+router.get('/scrape/reddit_scrape_n_sort', scrape_controller.scrape_create_get);
+
+
+// POST | reddit_scrape_n_sort_POST
+//|------------------------------------------------------------------------
+router.post('/scrape/reddit_scrape_n_sort', scrape_controller.pushshift_scrape_n_sort_post);
+module.exports = router;
+
 
 // GET | name
 //|------------------------------------------------------------------------
