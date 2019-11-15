@@ -47,8 +47,9 @@ router.get('/scrape/reddit_scrape_n_sort', scrape_controller.scrape_create_get);
 
 // POST | reddit_scrape_n_sort_POST  //TODO final version - condense this with all other lines with this note.
 //|------------------------------------------------------------------------
-router.post('/scrape/reddit_scrape_n_sort', scrape_controller.pushshift_scrape_n_sort_post);
+router.post('/scrape/reddit_scrape_n_sort', scrape_controller.reddit_scrape_n_sort_post);
 module.exports = router;
+
 
 
 // GET | name
