@@ -2,10 +2,12 @@
 |--------------------------------------------------------------------------
 | Scraping Reddit
 |--------------------------------------------------------------------------
+|  // TODO fix favicon 
+|  // TODO fix nav bar / home always active
+|  // TODO index.pug line 24 for scrape list link
+|  // TODO layout.pug line 26+ for nav bar links
 |
-| TODO:
-| * Configure index.pug line 24 for scrape list link
-| * Configure layout.pug line 26+ for nav bar links
+|
 */
 
 
