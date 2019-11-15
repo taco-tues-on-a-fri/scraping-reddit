@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    .form-group
+      label.col-form-label.col-form-label-lg(for='form_response') Url to be scraped:
+      input.form-control.form-control-lg#form_response(type='text' placeholder='https://www.reddit.com/r/unhealthy-sofas' name='form_response' value=(undefined===user_input ? '' : user_input.form_response))
+    button.btn.btn-primary(type='submit') Submit
+  
+  if errors
+    .container
+      .card.border-danger.mb-3(style='max-width: 20rem;')
+        .card-header Errors
+        .card-body
+          h4.card-title Yo! Sup with the errors?!
+          p.card-text Here's the errors:
+            ul
+              for error in errors
+                li!= error.msg
