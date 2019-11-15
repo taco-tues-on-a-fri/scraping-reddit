@@ -209,17 +209,6 @@ exports.reddit_scrape_n_sort_post = async function (req, res, next) {
     .catch(err => next(err))
 };
 
-
-  
-  
-    
-    .then(json => res.json({ message: json }))
-    .catch(err => next(err))
-
-};
-
-
-
 //#endregion
 //|------------------------------------------------------------------------
 
