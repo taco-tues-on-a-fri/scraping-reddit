@@ -12,14 +12,20 @@ block content
           input.form-control.form-control-lg#form_response(type='text' placeholder='https://www.reddit.com/r/unhealthy-sofas' name='form_response' value=(undefined===user_input ? '' : user_input.form_response))
         </div>
       </div>
-      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        <button type="button" class="btn btn-primary">Sort</button>
-        <div class="btn-group show" role="group">
-          <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
-          <div class="dropdown-menu show" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 36px, 0px);">
-            <a class="dropdown-item" href="/scrape/pushshift_scrape_n_sort">Sort PushShift</a>
-            <a class="dropdown-item" href="/scrape/reddit_scrape_n_sort">Sort Reddit</a>
-          </div>
+      <div class="row">
+        <div class="col">
+          button.btn.btn-primary(type='submit' formaction='/scrape/pushshift_scrape_n_sort') Sort PushShift
+        </div>
+        <div class="col">
+          button.btn.btn-primary(type='submit' formaction='/scrape/create') List PushShift
+        </div>
+        <div class="col">
+          button.btn.btn-primary(type='submit' formaction='/scrape/reddit_scrape_n_sort') Sort Reddit
+        </div>
+        <div class="col">
+          button.btn.btn-primary(type='submit' formaction='/scrape/reddit_scrape_create') List Reddit
+        </div>
+        <div class="col-5">
         </div>
       </div>
     </div>
