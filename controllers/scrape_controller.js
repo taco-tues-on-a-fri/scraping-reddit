@@ -147,6 +147,30 @@ exports.regex_pushshift_search_by_id_then_get_comments = async function (req, re
 
 
 //|------------------------------------------------------------------------
+//#region | BUILD | pushshift_scrape_n_sort_get | pushshift_scrape_n_sort_get
+/**
+|--------------------------------------------------------------------------
+|  pushshift_scrape_n_sort_get
+|--------------------------------------------------------------------------
+|
+*/
+
+exports.pushshift_scrape_n_sort_get = function(req, res, next) {
+  res.render('scrape_form', 
+  {
+    title: 'Create Scrape'
+  }
+  );
+};
+
+//#endregion
+//|------------------------------------------------------------------------
+
+
+
+
+
+//|------------------------------------------------------------------------
 //#region | BLANK | description | function_name
 /**
 |--------------------------------------------------------------------------
