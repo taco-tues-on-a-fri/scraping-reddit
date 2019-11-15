@@ -3,6 +3,7 @@
 
 const appRoot   =  require('app-root-path');
 const async     =  require('async');
+const helper    =  require(appRoot + '/lib/helper');
 const pushshift =  require(appRoot + '/lib/push-shift');
 const reddit    =  require(appRoot + '/lib/reddit');
 const regex     =  require(appRoot + '/lib/regex');
