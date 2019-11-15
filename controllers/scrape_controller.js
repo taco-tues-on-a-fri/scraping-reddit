@@ -184,6 +184,56 @@ exports.pushshift_scrape_n_sort_post = async function (req, res, next) {
 
 
 //|------------------------------------------------------------------------
+//#region | BUILD | reddit_scrape_n_sort_post | reddit_scrape_n_sort_post
+/**
+|--------------------------------------------------------------------------
+|  reddit_scrape_n_sort_post
+|--------------------------------------------------------------------------
+|
+*/
+
+exports.reddit_scrape_n_sort_post = async function (req, res, next) {
+  
+  let errors = validationResult(req);
+
+  let request_url = req.body.form_response
+  let reddit_linkid = regex.reddit_linkid(request_url) // delete
+  let formatted_url= reddit.create_reddit_url(reddit_linkid) // change
+
+  let options = {
+    method: 'GET',
+    uri: formatted_url,
+    json: true
+  }
+
+  rp(options)
+    .then(json => reddit.comment_flattener_w_nested_generator(json))
+    .then(json => helper.reduce_comments_by_author(json))
+    .then(json => res.json({ message: json }))
+    .catch(err => next(err))
+};
+
+exports.reddit_scrape = async function (req, res, next) {
+  const request_url = req.body.form_response;
+  
+  rp({ uri: reddit.create_reddit_url(request_url, reddit.sort_method.sort_best), json: true })
+    .then(json => reddit.flatten_comments_w_nested_generator(json))
+    .then(json => res.json({ message: json }))
+    .catch(err => next(err))
+
+};
+
+
+
+//#endregion
+//|------------------------------------------------------------------------
+
+
+
+
+
+
+//|------------------------------------------------------------------------
 //#region | BLANK | description | function_name
 /**
 |--------------------------------------------------------------------------
