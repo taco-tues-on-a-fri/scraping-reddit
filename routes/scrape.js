@@ -30,6 +30,14 @@ router.get('/scrape/reddit_scrape_create', scrape_controller.scrape_create_get);
 //|------------------------------------------------------------------------
 router.post('/scrape/reddit_scrape_create', scrape_controller.reddit_scrape);
 
+// GET | pushshift_scrape_n_sort_get
+//|------------------------------------------------------------------------
+router.get('/scrape/pushshift_scrape_n_sort', scrape_controller.scrape_create_get);
+
+
+// POST | pushshift_scrape_n_sort_POST
+//|------------------------------------------------------------------------
+router.post('/scrape/pushshift_scrape_n_sort', scrape_controller.pushshift_scrape_n_sort_post);
 module.exports = router;
 
 
