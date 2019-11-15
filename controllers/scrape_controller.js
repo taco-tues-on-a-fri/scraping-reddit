@@ -157,24 +157,23 @@ exports.regex_pushshift_search_by_id_then_get_comments = async function (req, re
 
 exports.pushshift_scrape_n_sort_post = async function (req, res, next) {
   
-    let errors = validationResult(req);
-  
-    let request_url = req.body.form_response
-    let reddit_linkid = regex.reddit_linkid(request_url)
-    let formatted_url= pushshift.create_pushshift_url(reddit_linkid)
-  
-    let options = {
-      method: 'GET',
-      uri: formatted_url,
-      json: true
-    }
-  
-    rp(options)
-      .then(json => pushshift.comment_flattener_w_nested_generator(json))
-      .then(json => helper.reduce_comments_by_author(json))
-      .then(json => res.json({ message: json }))
-      .catch(err => next(err))
-  };
+  let errors = validationResult(req);
+
+  let request_url = req.body.form_response
+  let reddit_linkid = regex.reddit_linkid(request_url)
+  let formatted_url= pushshift.create_pushshift_url(reddit_linkid)
+
+  let options = {
+    method: 'GET',
+    uri: formatted_url,
+    json: true
+  }
+
+  rp(options)
+    .then(json => pushshift.comment_flattener_w_nested_generator(json))
+    .then(json => helper.reduce_comments_by_author(json))
+    .then(json => res.json({ message: json }))
+    .catch(err => next(err))
 };
 
 //#endregion
