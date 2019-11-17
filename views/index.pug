@@ -1,27 +1,3 @@
 extends layout
 
 block content
-  .page-header#banner
-  .row
-    .col-lg-8.col-md-7.col-sm-6
-      h1= title
-      p.lead Explain, scraping reddit project - it does this thing, by doing some things, and a couple other things.  I made these choices for these reasons.  Maybe a few other reasons contributed to this as well. 
-    .col-lg-4.col-md-5.col-sm-6
-
-      p.lead What does this do?
-  .row
-    .col-lg-12
-      .jumbotron
-        h1.display-3 Stats
-        if error
-          p.lead Error getting dynamic content.
-        else
-          p.lead Here's the data on the scrapes so far:
-        hr.my-4
-        ul
-          li #[strong Number of Scrapes:] !{data.scrape_count}
-        p.lead
-          a.btn.btn-primary.btn-lg(href='/scrape/scrapes' role='button') Scrape List
-        hr.my-4
-        p.lead
-          a.btn.btn-primary.btn-lg(href='/scrape/create' role='button') Create Scrape
