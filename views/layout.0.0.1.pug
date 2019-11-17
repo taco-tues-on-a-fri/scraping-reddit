@@ -1,0 +1,342 @@
+doctype html
+html(lang="en")
+  head
+    title= title
+<!--Required meta tags =====================-->
+  meta(charset="utf-8")
+  meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+<!-- Bootstrap CSS =========================-->
+  link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css")
+  link(rel="stylesheet", href="/stylesheets/style.css")
+
+  body
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+      .container
+        a.navbar-brand(href='/') Scraping Reddit
+        button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarColor01' aria-controls='navbarColor01' aria-expanded='false' aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+
+        .collapse.navbar-collapse#navbarColor01
+          ul.navbar-nav.mr-auto
+            li.nav-item.active
+              a.nav-link(href='/') 
+                | Home 
+                span.sr-only (current)
+            li.nav-item
+              a.nav-link(href='/scrape/create') Create Scrape
+            li.nav-item
+              a.nav-link(href='/scrapes') Scrape List
+            li.nav-item
+              a.nav-link(href='/wordcount/:id') Word Count
+
+          form.form-inline.my-2.my-lg-0
+            input.form-control.mr-sm-2(type='text' placeholder='Search')
+            button.btn.btn-secondary.my-2.my-sm-0(type='submit') Search
+    .container
+      block content
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js", integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN", crossorigin="anonymous")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js", integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q", crossorigin="anonymous")
+  script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js", integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl", crossorigin="anonymous")
+
+<body>
+  <div class="bodyGradient">
+    <header class="navbar navbar-inverse navbar-static-top">
+    
+    </header>
+  </div>
+</body>
+<body>
+  <div class="bodyGradient">
+    <header class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="navbar-brand">';--</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/NotifyMe" class="notifyOfPwning" data-toggle="modal" data-target="#notifyMeModal"
+                data-remote="false">Notify me</a></li>
+            <li><a href="/DomainSearch">Domain search</a></li>
+            <li><a href="/PwnedWebsites">Who's been pwned</a></li>
+            <li><a href="/Passwords">Passwords</a></li>
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">API</a>
+              <ul class="dropdown-menu">
+                <li><a href="/API/v3">Overview</a></li>
+                <li><a href="/API/Key">API key</a></li>
+                <li><a href="/API/Consumers">Who's using it</a></li>
+              </ul>
+            </li>
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">About</a>
+              <ul class="dropdown-menu">
+                <li><a href="/About">Who, what &amp; why</a></li>
+                <li><a href="/Privacy">Privacy</a></li>
+                <li><a href="/FAQs">FAQs</a></li>
+                <li><a href="/Pastes">Pastes</a></li>
+                <li><a href="/OptOut">Opt-out</a></li>
+                <li><a href="https://twitter.com/haveibeenpwned" rel="noopener">Twitter</a></li>
+                <li><a href="https://haveibeenpwned.uservoice.com/forums/275398-general" rel="noopener">UserVoice</a>
+                </li>
+                <li><a href="https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches" rel="noopener"><i
+                      class="fa fa-rss"></i> Breaches</a></li>
+              </ul>
+            </li>
+            <li><a href="/Donate">Donate <i class="fa fa-bitcoin"></i> <i class="fa fa-paypal payPalLogo"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="main">
+      <div class="container">
+        <div class="row logoPanel">
+          <div class="main-logo">
+            <span class="logo">';--have i been pwned?</span>
+          </div>
+          <p>Check if you have an account that has been compromised in a data breach</p>
+        </div>
+      </div>
+    </div>
+    <div id="searchContainer" class="secondaryHeader">
+      <div class="container">
+        <form action="/" method="post" novalidate="novalidate">
+          <div class="input-group">
+            <input autocapitalize="off" autocorrect="off" class="form-control" data-val="true"
+              data-val-maxlength="The field Account must be a string or array type with a maximum length of '255'."
+              data-val-maxlength-max="255"
+              data-val-minlength="The field Account must be a string or array type with a minimum length of '3'."
+              data-val-minlength-min="3" id="Account" maxlength="255" name="Account" placeholder="email address"
+              spellcheck="false" type="email" value="">
+            <input type="hidden" name="apiEndpoint" id="apiEndpoint" value="https://haveibeenpwned.com/unifiedsearch/">
+            <span class="input-group-btn">
+              <button class="btn btn-primary btn-lg" type="submit" id="searchPwnage">pwned?</button>
+            </span>
+          </div>
+          <div class="progress progress-striped active" id="loading">
+            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+              style="width: 100%">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="tertiaryHeader panel-collapse in">
+      <div class="container">
+        <p>
+          <img src="/Content/Images/PasswordManager/1PasswordLogo.svg" alt="1Password Logo">
+          <span>Generate secure, unique passwords for every account</span>
+          <a href="https://1password.com/haveibeenpwned/" target="_blank" class="btn btn-group-xs" rel="noopener">Learn
+            more at 1Password.com</a>
+        </p>
+        <p class="why1Password"><a href="/1Password">Why 1Password?</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="container text-center">
+    <div class="row pwnedSummaryRow">
+      <div class="col-sm-3"><span class="pwnSummaryCount">412</span><br>pwned websites</div>
+      <div class="col-sm-3"><span class="pwnSummaryCount">8,513,925,254</span><br>pwned accounts</div>
+      <div class="col-sm-3"><span class="pwnSummaryCount">103,731</span><br>pastes</div>
+      <div class="col-sm-3"><span class="pwnSummaryCount">123,220,592</span><br>paste accounts</div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>Largest breaches</h3>
+        <div class="row pwnedCompanyList">
+          <table>
+            <tbody>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/List.png" alt="Collection #1 logo"></td>
+                <td class="pwnCount">772,904,991</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#Collection1" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="Collection1" data-remote="false">Collection #1
+                    accounts</a></td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/VerificationsIO.png"
+                    alt="Verifications.io logo"></td>
+                <td class="pwnCount">763,117,241</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#VerificationsIO" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="VerificationsIO"
+                    data-remote="false">Verifications.io accounts</a></td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/Email.png" alt="Onliner Spambot logo">
+                </td>
+                <td class="pwnCount">711,477,622</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#OnlinerSpambot" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="OnlinerSpambot" data-remote="false">Onliner Spambot
+                    accounts</a></td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/List.png" alt="Exploit.In logo"></td>
+                <td class="pwnCount">593,427,119</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#ExploitIn" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="ExploitIn" data-remote="false">Exploit.In
+                    accounts</a></td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/List.png"
+                    alt="Anti Public Combo List logo"></td>
+                <td class="pwnCount">457,962,538</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#AntiPublic" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="AntiPublic" data-remote="false">Anti Public Combo
+                    List accounts</a></td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/Email.png"
+                    alt="River City Media Spam List logo"></td>
+                <td class="pwnCount">393,430,309</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#RiverCityMedia" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="RiverCityMedia" data-remote="false">River City Media
+                    Spam List accounts</a></td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/MySpace.png" alt="MySpace logo"></td>
+                <td class="pwnCount">359,420,698</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#MySpace" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="MySpace" data-remote="false">MySpace accounts</a>
+                </td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/NetEase.png" alt="NetEase logo"></td>
+                <td class="pwnCount">234,842,089</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#NetEase" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="NetEase" data-remote="false">NetEase accounts</a>
+                </td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/LinkedIn.png" alt="LinkedIn logo"></td>
+                <td class="pwnCount">164,611,595</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#LinkedIn" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="LinkedIn" data-remote="false">LinkedIn accounts</a>
+                </td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/Dubsmash.png" alt="Dubsmash logo"></td>
+                <td class="pwnCount">161,749,950</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#Dubsmash" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="Dubsmash" data-remote="false">Dubsmash accounts</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <h3>Recently added breaches</h3>
+        <div class="row pwnedCompanyList">
+          <table>
+            <tbody>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/ToonDoo.png" alt="ToonDoo logo"></td>
+                <td class="pwnCount">6,002,694</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#ToonDoo" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="ToonDoo" data-remote="false">ToonDoo accounts</a>
+                </td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/Vedantu.png" alt="Vedantu logo"></td>
+                <td class="pwnCount">686,899</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#Vedantu" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="Vedantu" data-remote="false">Vedantu accounts</a>
+                </td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/HookersNL.png" alt="Hookers.nl logo"></td>
+                <td class="pwnCount">290,955</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#HookersNL" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="HookersNL" data-remote="false">Hookers.nl
+                    accounts</a></td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/Zooville.png" alt="Zooville logo"></td>
+                <td class="pwnCount">71,407</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#Zooville" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="Zooville" data-remote="false">Zooville accounts</a>
+                </td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/StreetEasy.png" alt="StreetEasy logo">
+                </td>
+                <td class="pwnCount">988,230</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#StreetEasy" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="StreetEasy" data-remote="false">StreetEasy
+                    accounts</a></td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/Sephora.png" alt="Sephora logo"></td>
+                <td class="pwnCount">780,073</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#Sephora" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="Sephora" data-remote="false">Sephora accounts</a>
+                </td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/Wanelo.png" alt="Wanelo logo"></td>
+                <td class="pwnCount">23,165,793</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#Wanelo" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="Wanelo" data-remote="false">Wanelo accounts</a></td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/LuminPDF.png" alt="Lumin PDF logo"></td>
+                <td class="pwnCount">15,453,048</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#LuminPDF" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="LuminPDF" data-remote="false">Lumin PDF accounts</a>
+                </td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/KiwiFarms.png" alt="KiwiFarms logo"></td>
+                <td class="pwnCount">4,606</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#KiwiFarms" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="KiwiFarms" data-remote="false">KiwiFarms
+                    accounts</a></td>
+              </tr>
+              <tr>
+                <td><img class="pwnLogo tiny" src="/Content/Images/PwnedLogos/Minehut.png" alt="Minehut logo"></td>
+                <td class="pwnCount">396,533</td>
+                <td class="pwnCompany"><a href="/PwnedWebsites#Minehut" data-toggle="modal"
+                    data-target="#pwnedCompanyOverview" data-pwned="Minehut" data-remote="false">Minehut accounts</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="container text-center">
+      <hr>
+      <p><a href="https://www.troyhunt.com" rel="noopener">A troyhunt.com project</a></p>
+      <p>
+        <a href="https://www.facebook.com/troyahunt" rel="noopener"><i class="fa fa-facebook-square fa-3x"></i></a>
+        <a href="https://twitter.com/troyhunt" rel="noopener"><i class="fa fa-twitter-square fa-3x"></i></a>
+        <a href="https://www.troyhunt.com/contact/" rel="noopener"><i class="fa fa-envelope fa-3x"></i></a>
+      </p>
+    </div>
+  </footer>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"
+    integrity="sha384-rY/jv8mMhqDabXSo+UCggqKtdmBfd3qC2/KvyTDNQ6PcUJXaxK1tMepoQda4g5vB" crossorigin="anonymous">
+  </script>
+  <script nonce="j0caCRezts++k+XknThh">
+    (window.jQuery) || document.write('<script src="/scripts/jquery"><\/script>');
+  </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+  </script>
+  <script nonce="j0caCRezts++k+XknThh">
+    ($.fn.modal) || document.write('<script src="/scripts/bootstrap"><\/script>');
+  </script>
+  <script src="/scripts/pwned?v=WxSCRykH9u3Wp4gvdrd5dBoLLbR8LcsnLxQfuh3J8_U1"></script>
+
+</body>
