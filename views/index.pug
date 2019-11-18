@@ -30,19 +30,21 @@ block content
     <div id="create-scrape" class="row jumbotron">
       <div class="col">
         <div class="col">
-          h1.text-info= scrape_title
-          <div class="row pt-4"></div>
-            label.col-form-label.col-form-label-lg(for='form_response') Url to be scraped:
-            input.form-control.form-control-lg#form_response(type='text' placeholder='https://www.reddit.com/r/unhealthy-sofas' name='form_response' value=(undefined===user_input ? '' : user_input.form_response))
-          <div class="row pt-3">
-          <div class="col">
-            <div class="btn-group" role="group" aria-label="Scrape Type">
-              <button type="submit" class="btn btn-secondary" formaction="/scrape/reddit_scrape_create">List Reddit</button>
-              <button type="submit" class="btn btn-secondary" formaction="/scrape/reddit_scrape_n_sort">Sort Reddit</button>
-              <button type="submit" class="btn btn-secondary" formaction="/scrape/create">List PushShift</button>
-              <button type="submit" class="btn btn-secondary" formaction="/scrape/pushshift_scrape_n_sort">Sort PushShift</button>
+        form(method='POST' action='')
+          .form-group
+            h1.text-info= scrape_title
+            <div class="row pt-4"></div>
+              label.col-form-label.col-form-label-lg(for='form_response') Url to be scraped:
+              input.form-control.form-control-lg#form_response(type='text' placeholder='https://www.reddit.com/r/unhealthy-sofas' name='form_response' value=(undefined===user_input ? '' : user_input.form_response))
+            <div class="row pt-3">
+            <div class="col">
+              <div class="btn-group" role="group" aria-label="Scrape Type">
+                <button type="submit" class="btn btn-secondary" formaction="/scrape/reddit_scrape_create">List Reddit</button>
+                <button type="submit" class="btn btn-secondary" formaction="/scrape/reddit_scrape_n_sort">Sort Reddit</button>
+                <button type="submit" class="btn btn-secondary" formaction="/scrape/create">List PushShift</button>
+                <button type="submit" class="btn btn-secondary" formaction="/scrape/pushshift_scrape_n_sort">Sort PushShift</button>
+              </div>
             </div>
-          </div>
         </div> 
       </div>
     </div>
