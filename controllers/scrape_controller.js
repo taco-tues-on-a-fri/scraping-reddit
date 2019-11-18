@@ -30,7 +30,7 @@ require('express-async-errors');
 exports.scrape_create_get = function(req, res, next) {
   res.render('scrape_form', 
   {
-    title: 'Create Scrape'
+    "scrape-title": 'Create Scrape'
   }
   );
 };
