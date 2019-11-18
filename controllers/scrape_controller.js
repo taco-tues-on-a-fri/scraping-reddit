@@ -24,40 +24,12 @@ exports.reddit_list = async function (req, res, next) {
     // .then(json => res.json({ message: json }))
     .then(results => res.render("scrape_response", 
       { 
-        title: "Scrape time bb",
+        title: "Reddit Comment List",
         results: results 
       }))
     .catch(err => next(err))
 
 };
-
-
-exports.pushshift_response = async function (req, res, next) {
-  let errors = validationResult(req);
-
-  let request_url = req.body.form_response
-  let reddit_linkid = regex.reddit_linkid(request_url)
-  let formatted_url= pushshift.create_pushshift_url(reddit_linkid)
-
-  let options = {
-    method: 'GET',
-    uri: formatted_url,
-    json: true
-  }
-
-  rp(options)
-    .then(json => pushshift.comment_flattener_w_nested_generator(json))
-    .then(results => res.render("scrape_response", 
-      { 
-        title: "Scrape time bb",
-        results: results 
-      }))
-    .catch(err => next(err))
-};
-
-//|------------------------------------------------------------------------
-
-
 
 
 //| sort reddit comments on POST
@@ -92,7 +64,12 @@ exports.pushshift_list = async function (req, res, next) {
 
   rp(options)
     .then(json => pushshift.comment_flattener_w_nested_generator(json))
-    .then(json => res.json({ message: json }))
+    // .then(json => res.json({ message: json }))
+    .then(results => res.render("scrape_response", 
+      { 
+        title: "PushShift Comments List",
+        results: results 
+      }))
     .catch(err => next(err))
 };
 
