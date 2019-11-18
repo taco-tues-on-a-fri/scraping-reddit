@@ -64,7 +64,7 @@ exports.pushshift_list = async function (req, res, next) {
 
 //| sort pushshift comments on POST
 //|------------------------------------------------------------------------
-exports.pushshift_scrape_n_sort_post = async function (req, res, next) {
+exports.pushshift_sort = async function (req, res, next) {
   
   let errors = validationResult(req);
 
@@ -84,7 +84,7 @@ exports.pushshift_scrape_n_sort_post = async function (req, res, next) {
     .then(json => res.json({ message: json }))
     .catch(err => next(err))
 };
-list_reddit
+
 
 
 
