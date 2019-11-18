@@ -1,5 +1,6 @@
-//| module dependencies
 //|------------------------------------------------------------------------
+//#region | module dependencies
+
 const appRoot   =  require('app-root-path');
 const async     =  require('async');
 const helper    =  require(appRoot + '/lib/helper');
@@ -13,26 +14,8 @@ const { body,validationResult } =  require('express-validator');
 const { sanitizeBody }          =  require('express-validator');
 require('express-async-errors');
 
-
-//| list reddit comments on POST
+//#endregion
 //|------------------------------------------------------------------------
-exports.list_reddit = async function (req, res, next) {
-  const request_url = req.body.form_response;
-  
-  rp({ uri: reddit.create_reddit_url(request_url, reddit.sort_method.sort_best), json: true })
-    .then(json => reddit.flatten_comments_w_nested_generator(json))
-    .then(json => res.json({ message: json }))
-    .catch(err => next(err))
-
-};
-
-
-
-
-
-
-
-
 
 
 //|------------------------------------------------------------------------

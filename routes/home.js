@@ -1,6 +1,5 @@
+//| module dependencies
 //|------------------------------------------------------------------------
-//#region module dependencies
-
 const express =  require('express');
 const router  =  express.Router();
 const appRoot =  require('app-root-path');
@@ -12,13 +11,20 @@ const { sanitizeBody }          =  require('express-validator');
 const home_controller   =  require(appRoot + '/controllers/home_controller');
 const scrape_controller =  require(appRoot + '/controllers/scrape_controller');
 
-//#endregion
-//|------------------------------------------------------------------------
-
-
 // GET | index
 //|------------------------------------------------------------------------
 router.get('/', home_controller.index);
+
+// POST | list_reddit_POST 
+//|------------------------------------------------------------------------
+router.post('/list_reddit', scrape_controller.list_reddit);
+
+
+
+
+
+
+
 
 // GET | TEST | request_url_fs_save
 //|------------------------------------------------------------------------
