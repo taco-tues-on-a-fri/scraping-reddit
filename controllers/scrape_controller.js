@@ -176,10 +176,10 @@ exports.pushshift_response = async function (req, res, next) {
 
   rp(options)
     .then(json => pushshift.comment_flattener_w_nested_generator(json))
-    .then(json => res.render("scrape_response", 
+    .then(results => res.render("scrape_response", 
       { 
         title: "Scrape time bb",
-        data: json 
+        results: results 
       }))
     .catch(err => next(err))
 };
