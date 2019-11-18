@@ -10,7 +10,7 @@ block content
     <div id="home" class="row jumbotron">
       <div class="col">
         <div class="col">
-          h1= title
+          h1.text-info= title
           <div class="row pt-4"></div>
           <p class="lead">Explain, scraping reddit project - it does this thing, by doing some things, and a couple other things.  I made these choices for these reasons.  Maybe a few other reasons contributed to this as well. </p>
           <hr class="my-4">
@@ -30,14 +30,21 @@ block content
     <div id="create-scrape" class="row jumbotron">
       <div class="col">
         <div class="col">
-          h1= scrape-title
+          h1.text-info= scrape_title
           <div class="row pt-4"></div>
-          <p class="lead">Explain, scraping reddit project - it does this thing, by doing some things, and a couple other things.  I made these choices for these reasons.  Maybe a few other reasons contributed to this as well. </p>
-          <hr class="my-4">
-          <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-          <p class="lead">
-          <a class="btn btn-primary btn-lg" href="#" role="button">Create a scrape</a>
-          </p>
+            label.col-form-label.col-form-label-lg(for='form_response') Url to be scraped:
+            input.form-control.form-control-lg#form_response(type='text' placeholder='https://www.reddit.com/r/unhealthy-sofas' name='form_response' value=(undefined===user_input ? '' : user_input.form_response))
+          <div class="row pt-3">
+          <div class="col">
+            <div class="btn-group" role="group" aria-label="Scrape Type">
+              <button type="submit" class="btn btn-secondary" formaction="/scrape/reddit_scrape_create">List Reddit</button>
+              <button type="submit" class="btn btn-secondary" formaction="/scrape/reddit_scrape_n_sort">Sort Reddit</button>
+              <button type="submit" class="btn btn-secondary" formaction="/scrape/create">List PushShift</button>
+              <button type="submit" class="btn btn-secondary" formaction="/scrape/pushshift_scrape_n_sort">Sort PushShift</button>
+            </div>
+          </div>
         </div> 
       </div>
     </div>
+    <div class="row pt-5"></div>
+    <div class="row pt-5"></div>

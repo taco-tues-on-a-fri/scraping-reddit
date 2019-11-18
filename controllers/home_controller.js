@@ -34,6 +34,8 @@ exports.index = function(req, res) {
 //#endregion
 //|------------------------------------------------------------------------
 
+
+
 //|------------------------------------------------------------------------
 //#region | REBUILD | Display home page | index
 /**
@@ -44,14 +46,10 @@ exports.index = function(req, res) {
 */
 
 exports.index = function(req, res) {
-  
-  async.parallel({
-    scrape_count: function(callback) {
-      Scrape.countDocuments({}, callback);
-    },
-  }, function(err, results) {
-    res.render('index', { title: "Scraping Reddit", error: err, data: results });
-  })
+    res.render('index', { 
+      title: "Scraping Reddit", 
+      scrape_title: 'Create Scrape'
+    });
 };
 //#endregion
 //|------------------------------------------------------------------------
