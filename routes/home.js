@@ -19,7 +19,9 @@ router.get('/', home_controller.index);
 //|------------------------------------------------------------------------
 router.post('/list_reddit', scrape_controller.list_reddit);
 
-
+// POST | reddit_sort_POST  
+//|------------------------------------------------------------------------
+router.post('/reddit_sort', scrape_controller.reddit_sort);
 
 
 

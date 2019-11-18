@@ -26,7 +26,20 @@ exports.list_reddit = async function (req, res, next) {
 
 };
 
+//| sort reddit comments on POST
+//|------------------------------------------------------------------------
+exports.reddit_sort = async function (req, res, next) {
+  
+  const errors = validationResult(req);  // TODO finish adding the full validation code
 
+  const request_url = req.body.form_response
+
+  rp({ uri: reddit.create_reddit_url(request_url, reddit.sort_method.sort_best), json: true })
+    .then(json => reddit.flatten_comments_w_nested_generator(json))
+    .then(json => helper.reduce_comments_by_author(json))
+    .then(json => res.json({ message: json }))
+    .catch(err => next(err))
+};
 
 
 
