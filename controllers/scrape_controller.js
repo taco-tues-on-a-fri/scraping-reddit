@@ -146,6 +146,50 @@ exports.regex_pushshift_search_by_id_then_get_comments = async function (req, re
 
 
 
+
+//|------------------------------------------------------------------------
+//#region | BUILD | response form REGEX promise version of scrape create POST | pushshift_response
+/**
+|--------------------------------------------------------------------------
+|  pushshift_response
+|--------------------------------------------------------------------------
+| 
+| incoming req = form fill in req.body.form_response with a value url string:
+| https://www.reddit.com/r/ethtrader/comments/dsi7h0/a_dexag_story_by_scott_lewis/
+|
+| formatted_url: https://api.pushshift.io/reddit/comment/search/?link_id=7j0ec9&limit=20000
+|
+*/
+
+exports.pushshift_response = async function (req, res, next) {
+  let errors = validationResult(req);
+
+  let request_url = req.body.form_response
+  let reddit_linkid = regex.reddit_linkid(request_url)
+  let formatted_url= pushshift.create_pushshift_url(reddit_linkid)
+
+  let options = {
+    method: 'GET',
+    uri: formatted_url,
+    json: true
+  }
+
+  rp(options)
+    .then(json => pushshift.comment_flattener_w_nested_generator(json))
+    .then(json => res.render("scrape_response", 
+      { 
+        title: "Scrape time bb",
+        data: json 
+      }))
+    .catch(err => next(err))
+};
+//#endregion
+//|------------------------------------------------------------------------
+
+
+
+
+
 //|------------------------------------------------------------------------
 //#region | LIVE | pushshift_scrape_n_sort_post | pushshift_scrape_n_sort_post
 /**
