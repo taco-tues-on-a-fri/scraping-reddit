@@ -38,7 +38,7 @@ router.get('/scrape/pushshift_scrape_n_sort', scrape_controller.scrape_create_ge
 // POST | pushshift_scrape_n_sort_POST //TODO final version - In use
 //|------------------------------------------------------------------------
 router.post('/scrape/pushshift_scrape_n_sort', scrape_controller.pushshift_scrape_n_sort_post);
-module.exports = router;
+
 
 // GET | reddit_scrape_n_sort_get //TODO final version - Delete
 //|------------------------------------------------------------------------

@@ -16,7 +16,7 @@ require('express-async-errors');
 
 //| list reddit comments on POST
 //|------------------------------------------------------------------------
-exports.list_reddit = async function (req, res, next) {
+exports.reddit_list = async function (req, res, next) {
   const request_url = req.body.form_response;
   
   rp({ uri: reddit.create_reddit_url(request_url, reddit.sort_method.sort_best), json: true })
@@ -41,7 +41,50 @@ exports.reddit_sort = async function (req, res, next) {
     .catch(err => next(err))
 };
 
+//| list pushshift comments on POST
+//|------------------------------------------------------------------------
+exports.pushshift_list = async function (req, res, next) {
+  let errors = validationResult(req);
 
+  let request_url = req.body.form_response
+  let reddit_linkid = regex.reddit_linkid(request_url)
+  let formatted_url= pushshift.create_pushshift_url(reddit_linkid)
+
+  let options = {
+    method: 'GET',
+    uri: formatted_url,
+    json: true
+  }
+
+  rp(options)
+    .then(json => pushshift.comment_flattener_w_nested_generator(json))
+    .then(json => res.json({ message: json }))
+    .catch(err => next(err))
+};
+
+//| sort pushshift comments on POST
+//|------------------------------------------------------------------------
+exports.pushshift_scrape_n_sort_post = async function (req, res, next) {
+  
+  let errors = validationResult(req);
+
+  let request_url = req.body.form_response
+  let reddit_linkid = regex.reddit_linkid(request_url)
+  let formatted_url= pushshift.create_pushshift_url(reddit_linkid)
+
+  let options = {
+    method: 'GET',
+    uri: formatted_url,
+    json: true
+  }
+
+  rp(options)
+    .then(json => pushshift.comment_flattener_w_nested_generator(json)) //TODO Change this function name to be same as reddit's version
+    .then(json => helper.reduce_comments_by_author(json))
+    .then(json => res.json({ message: json }))
+    .catch(err => next(err))
+};
+list_reddit
 
 
 

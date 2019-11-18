@@ -15,16 +15,21 @@ const scrape_controller =  require(appRoot + '/controllers/scrape_controller');
 //|------------------------------------------------------------------------
 router.get('/', home_controller.index);
 
-// POST | list_reddit_POST 
+// POST | reddit_list
 //|------------------------------------------------------------------------
-router.post('/list_reddit', scrape_controller.list_reddit);
+router.post('/reddit_list', scrape_controller.reddit_list);
 
-// POST | reddit_sort_POST  
+// POST | reddit_sort
 //|------------------------------------------------------------------------
 router.post('/reddit_sort', scrape_controller.reddit_sort);
 
+// POST | pushshift_list
+//|------------------------------------------------------------------------
+router.post('/pushshift_list', scrape_controller.pushshift_list);
 
-
+// POST | pushshift_sort 
+//|------------------------------------------------------------------------
+router.post('/pushshift_sort', scrape_controller.pushshift_sort);
 
 
 
