@@ -48,6 +48,16 @@ router.get('/scrape/reddit_scrape_n_sort', scrape_controller.scrape_create_get);
 // POST | reddit_scrape_n_sort_POST  //TODO final version - In use
 //|------------------------------------------------------------------------
 router.post('/scrape/reddit_scrape_n_sort', scrape_controller.reddit_scrape_n_sort_post);
+
+// GET | test_response_get //TODO final version - Delete
+//|------------------------------------------------------------------------
+router.get('/scrape/test_response', scrape_controller.scrape_create_get);
+
+
+// POST | test_response_POST  //TODO final version - In use
+//|------------------------------------------------------------------------
+router.post('/scrape/test_response', scrape_controller.pushshift_response);
+
 module.exports = router;
 
 
