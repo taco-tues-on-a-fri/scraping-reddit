@@ -20,9 +20,16 @@ require('express-async-errors');
 //| list reddit comments on POST
 //|------------------------------------------------------------------------
 exports.reddit_list = async function (req, res, next) {
-  const request_url = req.body.form_response;
+  const request_url   =  req.body.form_response;
+  const formatted_url =  reddit.create_reddit_url(request_url);
+
+  const options = {
+    method: 'GET',
+    uri: formatted_url,
+    json: true
+  };
   
-  rp({ uri: reddit.create_reddit_url(request_url, reddit.sort_method.sort_best), json: true })
+  rp(options)
     .then(json => reddit.flatten_comments_w_nested_generator(json))
     .then(results => res.render("scrape_response", 
       { 
@@ -38,10 +45,17 @@ exports.reddit_list = async function (req, res, next) {
 //| sort reddit comments on POST
 //|------------------------------------------------------------------------
 exports.reddit_sort = async function (req, res, next) {
-  const errors      =  validationResult(req); // TODO finish adding the full validation code
-  const request_url =  req.body.form_response;
+  const errors        =  validationResult(req); // TODO finish adding the full validation code
+  const request_url   =  req.body.form_response;
+  const formatted_url =  reddit.create_reddit_url(request_url);
 
-  rp({ uri: reddit.create_reddit_url(request_url, reddit.sort_method.sort_best), json: true })
+  const options = {
+    method: 'GET',
+    uri: formatted_url,
+    json: true
+  };
+  
+  rp(options)
     .then(json => reddit.flatten_comments_w_nested_generator(json))
     .then(json => helper.reduce_comments_by_author(json))
     .then(results => res.render("scrape_n_sort_response", 
