@@ -18,8 +18,9 @@ block content
                   h5.text-info.mb-1= index
                   //- h5.text-info.mb-1= item[0]
                   //- small= item.display_date
+                - var count = 0  
                 each comment in val  
-                  p.text-muted.mb-1= comment
+                  p.text-muted.mb-1= ++count + ': ' + comment
                 //- small.text-muted= item.id
         </div>
     </div>
