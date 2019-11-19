@@ -6,11 +6,10 @@ const helper    =  require(appRoot + '/lib/helper');
 const pushshift =  require(appRoot + '/lib/push-shift');
 const reddit    =  require(appRoot + '/lib/reddit');
 const regex     =  require(appRoot + '/lib/regex');
-const rp        =  require('request-promise-native');
-const Scrape    =  require(appRoot + '/models/scrape');
+const req_prom  =  require('request-promise-native');
 
 const { body,validationResult } =  require('express-validator');
-const { sanitizeBody }          =  require('express-validator');
+// const { sanitizeBody }          =  require('express-validator');
 require('express-async-errors');
 
 
@@ -29,7 +28,7 @@ exports.reddit_list = async function (req, res, next) {
     json: true
   };
   
-  rp(options)
+  req_prom(options)
     .then(json => reddit.flatten_comments_w_nested_generator(json))
     .then(results => res.render("scrape_response", 
       { 
@@ -55,7 +54,7 @@ exports.reddit_sort = async function (req, res, next) {
     json: true
   };
   
-  rp(options)
+  req_prom(options)
     .then(json => reddit.flatten_comments_w_nested_generator(json))
     .then(json => helper.reduce_comments_by_author(json))
     .then(results => res.render("scrape_n_sort_response", 
@@ -82,7 +81,7 @@ exports.pushshift_list = async function (req, res, next) {
     json: true
   };
 
-  rp(options)
+  req_prom(options)
     .then(json => pushshift.flatten_comments_w_nested_generator(json))
     .then(results => res.render("scrape_response", 
       { 
@@ -109,7 +108,7 @@ exports.pushshift_sort = async function (req, res, next) {
     json: true
   }
 
-  rp(options)
+  req_prom(options)
     .then(json => pushshift.flatten_comments_w_nested_generator(json))
     .then(json => helper.reduce_comments_by_author(json))
     .then(results => res.render("scrape_n_sort_response", 
