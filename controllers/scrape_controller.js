@@ -21,7 +21,6 @@ exports.reddit_list = async function (req, res, next) {
   
   rp({ uri: reddit.create_reddit_url(request_url, reddit.sort_method.sort_best), json: true })
     .then(json => reddit.flatten_comments_w_nested_generator(json))
-    // .then(json => res.json({ message: json }))
     .then(results => res.render("scrape_response", 
       { 
         title: "Reddit Comment List",
@@ -35,9 +34,7 @@ exports.reddit_list = async function (req, res, next) {
 //| sort reddit comments on POST
 //|------------------------------------------------------------------------
 exports.reddit_sort = async function (req, res, next) {
-  
   const errors = validationResult(req);  // TODO finish adding the full validation code
-
   const request_url = req.body.form_response
 
   rp({ uri: reddit.create_reddit_url(request_url, reddit.sort_method.sort_best), json: true })
@@ -91,11 +88,10 @@ exports.pushshift_sort = async function (req, res, next) {
 
   rp(options)
     .then(json => pushshift.comment_flattener_w_nested_generator(json)) //TODO Change this function name to be same as reddit's version
-    .then(json => helper.reduce_comments_by_author(json))
-    // .then(json => res.json({ message: json }))
+    .then(json => helper.reduce_comments_by_author(json)))
     .then(results => res.render("scrape_n_sort_response", 
       { 
-        title: "PushShift Comments List",
+        title: "PushShift Comments Sorted",
         results: results 
       }))
     .catch(err => next(err))
