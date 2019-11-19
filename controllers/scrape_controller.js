@@ -92,7 +92,12 @@ exports.pushshift_sort = async function (req, res, next) {
   rp(options)
     .then(json => pushshift.comment_flattener_w_nested_generator(json)) //TODO Change this function name to be same as reddit's version
     .then(json => helper.reduce_comments_by_author(json))
-    .then(json => res.json({ message: json }))
+    // .then(json => res.json({ message: json }))
+    .then(results => res.render("scrape_n_sort_response", 
+      { 
+        title: "PushShift Comments List",
+        results: results 
+      }))
     .catch(err => next(err))
 };
 
