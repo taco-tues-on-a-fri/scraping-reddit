@@ -15,8 +15,14 @@ block content
               .list-group-item.list-group-item-action.flex-column.align-items-start
                 .d-flex.w-100.justify-content-between
                   h5.text-info.mb-1= index
+                  //- h5.text-info.mb-1= item[0]
+                  //- small= item.display_date
                 - var count = 0  
                 each comment in val  
                   p.text-muted.mb-1= ++count + ': ' + comment
+                //- small.text-muted= item.id
         </div>
     </div>
+
+    //- for (let [key, value] of Object.entries(results))
+    //- for each [key, value] of Object.entries(results)
