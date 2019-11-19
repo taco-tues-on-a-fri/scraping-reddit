@@ -1,10 +1,6 @@
 //| module dependencies
 //|------------------------------------------------------------------------
 const appRoot  =  require('app-root-path');
-const async    =  require('async')
-const helper   =  require(appRoot + '/lib/helper');
-const rp       =  require('request-promise')
-const Scrape   =  require(appRoot + '/models/scrape');
 require('express-async-errors');
 
 
