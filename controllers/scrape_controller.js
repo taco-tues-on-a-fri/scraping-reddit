@@ -60,7 +60,7 @@ exports.pushshift_list = async function (req, res, next) {
   }
 
   rp(options)
-    .then(json => pushshift.comment_flattener_w_nested_generator(json))
+    .then(json => pushshift.flatten_comments_w_nested_generator(json))
     // .then(json => res.json({ message: json }))
     .then(results => res.render("scrape_response", 
       { 
@@ -87,8 +87,8 @@ exports.pushshift_sort = async function (req, res, next) {
   }
 
   rp(options)
-    .then(json => pushshift.comment_flattener_w_nested_generator(json)) //TODO Change this function name to be same as reddit's version
-    .then(json => helper.reduce_comments_by_author(json)))
+    .then(json => pushshift.flatten_comments_w_nested_generator(json))
+    .then(json => helper.reduce_comments_by_author(json))
     .then(results => res.render("scrape_n_sort_response", 
       { 
         title: "PushShift Comments Sorted",
@@ -181,7 +181,7 @@ exports.pushshift_search_by_id_then_get_comments = async function (req, res, nex
   }
 
   rp(options)
-    .then(json => pushshift.comment_flattener_w_nested_generator(json))
+    .then(json => pushshift.flatten_comments_w_nested_generator(json))
     .then(json => res.json({ message: json }))
     .catch(err => next(err))
 };
@@ -220,7 +220,7 @@ exports.regex_pushshift_search_by_id_then_get_comments = async function (req, re
   }
 
   rp(options)
-    .then(json => pushshift.comment_flattener_w_nested_generator(json))
+    .then(json => pushshift.flatten_comments_w_nested_generator(json))
     .then(json => res.json({ message: json }))
     .catch(err => next(err))
 };
@@ -260,7 +260,7 @@ exports.pushshift_response = async function (req, res, next) {
   }
 
   rp(options)
-    .then(json => pushshift.comment_flattener_w_nested_generator(json))
+    .then(json => pushshift.flatten_comments_w_nested_generator(json))
     .then(results => res.render("scrape_response", 
       { 
         title: "Scrape time bb",
@@ -299,7 +299,7 @@ exports.pushshift_scrape_n_sort_post = async function (req, res, next) {
   }
 
   rp(options)
-    .then(json => pushshift.comment_flattener_w_nested_generator(json)) //TODO Change this function name to be same as reddit's version
+    .then(json => pushshift.flatten_comments_w_nested_generator(json)) //TODO Change this function name to be same as reddit's version
     .then(json => helper.reduce_comments_by_author(json))
     .then(json => res.json({ message: json }))
     .catch(err => next(err))

@@ -2,15 +2,14 @@ extends layout
 
 block content
   <div class="container">
-    <div class="row pt-5"></div>
-    <div class="row pt-5">
+    <div class="row pt-1">
       <div class="col-xs-12"></div>
     </div>
     <div class="col-md-1"></div>
-    <div id="scrape_response" class="row jumbotron bg-info">
+    <div id="scrape_response" class="row jumbotron bg-transparent">
       <div class="col">
-        h1.text-secondary= title
-        <div class="row pt-4"></div>
+        h1.text-info= title
+        <div class="row pt-2"></div>
           .list-group
             for item in results
               .list-group-item.list-group-item-action.flex-column.align-items-start
