@@ -148,6 +148,7 @@ app.use(compression());
 
 app.use('/', home_router);
 app.use('/', users_router);
+app.use('/', scrape_router);
 
 
 
