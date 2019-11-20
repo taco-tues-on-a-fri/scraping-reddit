@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  <div class="container">
+    <div class="row pt-5"></div>
+    <div class="row pt-5">
+      <div class="col-xs-12"></div>
+    </div>
+    <div class="col-md-1"></div>
+    <div id="nlp_form" class="row jumbotron">
+        <div class="col">
+          <div class="col">
+          form(method='POST' action='')
+            form-group
+              h1.text-info= title
+              <div class="row pt-4"></div>
+                label.col-form-label.col-form-label-lg(for='form_response') Paste Text Here:
+                input.form-control.textarea#form_response(rows='30' type='text' placeholder='maybe paste something here...?' name='form_response' value=(undefined===user_input ? '' : user_input.form_response))
+              <div class="row pt-3">
+              <div class="col">
+                <div class="btn-group" role="group" aria-label="Scrape Type">
+                  <button type="submit" class="btn btn-secondary" formaction="/nlp_freq_list">Word Frequency List</button>
+                  <button type="submit" class="btn btn-secondary" formaction="/nlp_freq_table">Word Frequency Table</button>
+                  <button type="submit" class="btn btn-secondary" formaction="#">Unused</button>
+                  <button type="submit" class="btn btn-secondary" formaction="#">Unused</button>
+                </div>
+              </div> 
+              </div> 
+            </div> 
+          </div> 
+        </div> 
+    </div>

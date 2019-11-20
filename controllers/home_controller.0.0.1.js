@@ -1,11 +1,8 @@
 //| module dependencies
 //|------------------------------------------------------------------------
 const appRoot  =  require('app-root-path');
-const Freq = require('wordfrequenter');
-const wf = require('word-freq');
-const sw = require('stopword');
-const util = require('util');
-const helper =  require(appRoot + '/lib/helper');
+const Freq = require('wordfrequenter')
+const util = require('util')
 require('express-async-errors');
 
 
@@ -30,49 +27,49 @@ exports.nlp = function(req, res) {
 
 
 
-//| nlp_freq_list
+//| nlp_freq
 //|------------------------------------------------------------------------
-exports.nlp_freq_list = function(req, res, next) {
+exports.nlp_freq = function(req, res, next) {
   const form_body   =  req.body.form_response;
-  const stopped_string = sw.removeStopwords(form_body.split(' '))
+  const word_frequency = new Freq(form_body.split(' '))
   
-  const frequency_list = wf.freq(form_body, false, false)
-  const stopped_frequency_list = wf.freq(stopped_string)
+  word_frequency.set('string')
+  const word_list = word_frequency.list()
+  console.dir(word_list)
+  
+  const reduce_words_list = function(handed_array){
+    const words_body = handed_array
+  
+    let reducer = words_body.reduce((accumulator, word_instance) => {
+      let { word, count } = word_instance;
+      return {...accumulator, [word]: [...(accumulator[word] || []), count]};
+    }, {});
+  
+    return reducer;
+  }
 
-  // console.dir(`frequency_list: ${frequency_list}`)
-  const sorted_list = helper.sort_properties(frequency_list)
-  // console.dir(`sorted_list: ${sorted_list}`)
-  // console.dir(util.inspect(stopped_frequency_list))
-  console.dir(util.inspect(frequency_list))
-
-
+  const reduced_list = reduce_words_list(word_list)
+  
   res.render('nlp_response', { 
-    title: "Word Frequency_list",  
-    frequency_list: frequency_list    
+    title: "Word Frequency",
+    reduced_list: reduced_list ,   
+    word_list: word_list    
   });
 };
 
-//| nlp_freq_table
-//|------------------------------------------------------------------------
-exports.nlp_freq_list = function(req, res, next) {
-  const form_body   =  req.body.form_response;
-  const stopped_string = sw.removeStopwords(form_body.split(' '))
-  
-  const frequency_list = wf.freq(form_body, false, false)
-  const stopped_frequency_list = wf.freq(stopped_string)
+// const testWords = 'this is a cool test string this is cool cool cool'
 
-  // console.dir(`frequency_list: ${frequency_list}`)
-  const sorted_list = helper.sort_properties(frequency_list)
-  // console.dir(`sorted_list: ${sorted_list}`)
-  // console.dir(util.inspect(stopped_frequency_list))
-  console.dir(util.inspect(frequency_list))
+// const wf = new Freq(testWords.split(' '))
+
+// wf.set('string')
+// console.dir(wf.get('cool'))
+// console.dir(wf.list())
 
 
-  res.render('nlp_response', { 
-    title: "Word Frequency_list",  
-    frequency_list: frequency_list    
-  });
-};
+
+
+
+
 
 
 

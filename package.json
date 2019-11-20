@@ -11,6 +11,7 @@
     "debug": "nodemon --inspect ./bin/www"
   },
   "dependencies": {
+    "acorn": "^7.1.0",
     "app-root-path": "^3.0.0",
     "async": "^3.1.0",
     "chalk": "^2.4.2",
@@ -24,6 +25,7 @@
     "express-status-monitor": "^1.2.7",
     "express-validator": "^6.2.0",
     "fs": "0.0.2",
+    "handlebars": "^4.5.3",
     "http-errors": "~1.7.3",
     "moment": "^2.24.0",
     "mongoose": "^5.7.7",
@@ -32,7 +34,11 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "request-promise-native": "^1.0.8",
-    "winston": "^3.2.1"
+    "stopword": "^0.3.4",
+    "underscore": "^1.9.1",
+    "winston": "^3.2.1",
+    "word-freq": "0.0.8",
+    "wordfrequenter": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^12.12.6",

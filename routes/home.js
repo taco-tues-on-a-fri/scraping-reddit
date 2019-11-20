@@ -33,9 +33,17 @@ router.post('/pushshift_sort', scrape_controller.pushshift_sort);
 
 
 
-// GET | TEST | request_url_fs_save
+// GET | TEST | nlp
 //|------------------------------------------------------------------------
-router.get('/request_url_fs_save', home_controller.request_url_fs_save);
+router.get('/nlp', home_controller.nlp);
+
+// POST | TEST | nlp list
+//|------------------------------------------------------------------------
+router.post('/nlp_freq_list', home_controller.nlp_freq_list);
+
+// POST | TEST | nlp table
+//|------------------------------------------------------------------------
+router.post('/nlp_freq_table', home_controller.nlp_freq_table);
 
 
 

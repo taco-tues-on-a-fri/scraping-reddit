@@ -30,49 +30,45 @@ exports.nlp = function(req, res) {
 
 
 
-//| nlp_freq_list
+//| nlp_freq
 //|------------------------------------------------------------------------
-exports.nlp_freq_list = function(req, res, next) {
+exports.nlp_freq = function(req, res, next) {
   const form_body   =  req.body.form_response;
+
   const stopped_string = sw.removeStopwords(form_body.split(' '))
+
+  const word_frequency = new Freq(stopped_string)
+  word_frequency.set('string')
   
-  const frequency_list = wf.freq(form_body, false, false)
-  const stopped_frequency_list = wf.freq(stopped_string)
-
-  // console.dir(`frequency_list: ${frequency_list}`)
-  const sorted_list = helper.sort_properties(frequency_list)
-  // console.dir(`sorted_list: ${sorted_list}`)
-  // console.dir(util.inspect(stopped_frequency_list))
-  console.dir(util.inspect(frequency_list))
-
+  const word_list = word_frequency.list()
+  // console.dir(word_list)
+  
+  const sorted_list = helper.sort_properties(word_list)
+  console.dir(sorted_list)
 
   res.render('nlp_response', { 
-    title: "Word Frequency_list",  
-    frequency_list: frequency_list    
+    title: "Word Frequency",  
+    word_list: word_list    
   });
 };
 
-//| nlp_freq_table
-//|------------------------------------------------------------------------
-exports.nlp_freq_list = function(req, res, next) {
-  const form_body   =  req.body.form_response;
-  const stopped_string = sw.removeStopwords(form_body.split(' '))
-  
-  const frequency_list = wf.freq(form_body, false, false)
-  const stopped_frequency_list = wf.freq(stopped_string)
 
-  // console.dir(`frequency_list: ${frequency_list}`)
-  const sorted_list = helper.sort_properties(frequency_list)
-  // console.dir(`sorted_list: ${sorted_list}`)
-  // console.dir(util.inspect(stopped_frequency_list))
-  console.dir(util.inspect(frequency_list))
+// const oldString = 'a really Interesting string with some words'.split(' ')
+// const newString = sw.removeStopwords(oldString)
+// newString is now [ 'really', 'Interesting', 'string', 'words' ]
+// const testWords = 'this is a cool test string this is cool cool cool'
+
+// const wf = new Freq(testWords.split(' '))
+
+// wf.set('string')
+// console.dir(wf.get('cool'))
+// console.dir(wf.list())
 
 
-  res.render('nlp_response', { 
-    title: "Word Frequency_list",  
-    frequency_list: frequency_list    
-  });
-};
+
+
+
+
 
 
 
