@@ -54,23 +54,23 @@ exports.nlp_freq_list = function(req, res, next) {
 
 //| nlp_freq_table
 //|------------------------------------------------------------------------
-exports.nlp_freq_list = function(req, res, next) {
+exports.nlp_freq_table = function(req, res, next) {
   const form_body   =  req.body.form_response;
   const stopped_string = sw.removeStopwords(form_body.split(' '))
   
   const frequency_list = wf.freq(form_body, false, false)
   const stopped_frequency_list = wf.freq(stopped_string)
 
-  // console.dir(`frequency_list: ${frequency_list}`)
-  const sorted_list = helper.sort_properties(frequency_list)
-  // console.dir(`sorted_list: ${sorted_list}`)
-  // console.dir(util.inspect(stopped_frequency_list))
-  console.dir(util.inspect(frequency_list))
+  const sorted_list = helper.sort_properties(stopped_frequency_list)
+  console.log(util.inspect(sorted_list))
 
 
-  res.render('nlp_response', { 
+  res.render('nlp_response_table', { 
     title: "Word Frequency_list",  
-    frequency_list: frequency_list    
+    frequency_list: frequency_list,
+    stopped_frequency_list: stopped_frequency_list,
+    sorted_list: sorted_list
+
   });
 };
 

@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  <div class="container">
+    <div class="row pt-1">
+      <div class="col-xs-12"></div>
+    </div>
+    <div class="col-md-1"></div>
+    <div id="nlp_response" class="row jumbotron bg-transparent">
+      <div class="col">
+        h1.text-info= title
+        <div class="row pt-2"></div>
+          table.table.table-hover
+            <thead>
+              <tr>
+                th(scope='col') Word(freq-list)
+                th(scope='col') Frequency(freq-list)
+                th(scope='col') Word(sorted-list)
+                th(scope='col') Frequency(sorted-list)
+              </tr>
+            </thead>
+            <tbody>
+            each fq_value, fq_key in frequency_list 
+              each sort_value, sort_key in sorted_list 
+                <tr.default>
+                  td= fq_key
+                  td= fq_value
+                  td= sort_key
+                  td= sort_value
+                </tr>
+            </tbody>
+            </table> 
+        </div>
+    </div>
