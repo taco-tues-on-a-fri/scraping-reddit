@@ -28,8 +28,6 @@ Choose which method to have the response display returned in:
 
 NOTE:  Using either of the Reddit scrape methods will not yield a complete set of comments due to Reddit not serving more than ~1500 comments. Pushshift's methods will serve a complete dataset, but all of comments' scores will generally be incorrect. This is due to how and when Pushshift grabs comments for archival.
 
-### Files Included with this project:
-
 ### Version 2.0 Design Decisions & Project Issues:
 While taking a short break from building v.1.0, I attained a deeper understanding of various JavaScript foundational concepts and decided to apply these lessons by creating a second version of the scraper. This version addressed many of the flawed design approaches that were previously inefficient or insecure.
 
