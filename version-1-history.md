@@ -1,46 +1,10 @@
-- If possible, include screenshots and demo videos.
-
-Your job is to
-
-tell them what it is (with context)
-show them what it looks like in action
-show them how they use it
-tell them any other relevant details
-  
 Scraping Reddit
 ========
 May 2019 - Present
 ------------------
 
-### Version 2.0 of my first independent project which explored creating a Reddit comment scraper with Node.js. 
+### Version 1.0 Methodology:
 
-###### Describe very briefly but clearly what the project does.
-- Node.js app built with the ultimate goal of scraping Reddit comments to utilize NLP/ML processes for tracking user/troll/bot behaviors in order to recognize disinformation patterns and analyze sentiment within a subreddit community.
-
-###### State if it is out-of-the-box user-friendly, so it’s clear to the user.
-- This app is not currently out-of-the-box user-friendly, but I intend to implement this in a future update.
-
-###### List its most useful/innovative/noteworthy features.
-- Use reduce with Object destructuring and computed property names.
-- Previous experience led the app to be modular to achieve scalability and performance while being less error prone.
-
-###### State its goals/what problem(s) it solves.
-- The scraper allows you to input a specific Reddit comment thread URL to analyse then choose between 4 scrape options.
-- You can choose between requesting a JSON directly from Reddit or an archived version of the comment thread from Pushshift.
-- The list method will grab each comment and its metadata along with any subsequent child response, then flattening all threads found.
-- The sort method that will only grab each comment's `author: comment` and then sort the results by `author`.
-
-###### Note and briefly describe any key concepts (technical, philosophical, or both) important to the user’s understanding.
-- Using either of the Reddit scrape methods will not yield a complete set of comments due to Reddit not serving more then 1500(not positive of actual number) - Pushshift's methods will serve a complete dataset, but all of comments' scores will generally be incorrect. This is due to how Pushshift grabs comments for archival.
-
-###### Link to any supplementary blog posts or project main pages.
-- [Pushshift.io](https://pushshift.io/)
-- [Pushshift Documentation](https://pushshift.io/api-parameters/)
-
-###### Note its development status.
-- This project is still in development, but currently taking a backseat to another project. I have several other features I would like to build that would track and analyse disinformation campaigns.
-
-### Methodology, approaches, and problems encountered building V.1.0
 In version 1, I used all the elements learned from the MDN Local Library tutorial using mainly ES5 syntax.  I was aware there were more modern and elegant approaches to take, but I felt learning the old syntax first would allow me to experience the fallbacks first hand. 
 
 I found a code snippet on Github for a Reddit comment scraper that used generators to grab comments and replies.  I manually typed this snippet countless times, trying to dissect and understand what each part was doing. I built an Express app around my variation of this code, adding new functions and ideas as I went.  I studied the various SQL and NoSQL database options for schemas that would handle the data I was collecting. I decided to go with MongoDB, which I now believe to be an error. *need to add explanation of why* 
@@ -77,39 +41,3 @@ I used my daily coding time to solve problems that would help solidify my grasp 
 While researching a solution to one of these problems, I kept seeing references to using prototypes in the approach. I had seen this word everywhere during my path to learning JavaScript, but I never really sorted out what it was.  That day I changed that, and in doing so I had a breakthrough in my fundamental understanding of the structure of JavaScript.  
 
 I followed along with a lecture on prototypes, typing out all the examples when it finally clicked. Not only did prototypes make sense, but how they relate to the Global object, the `new` keyword and how the recent addition of classes tied into all of this.
-
-
-### Revisiting the Scraper with V.2.0:  
-With my new found grasp of the language, and the lessons learned from hardships and failures while creating V.10, I decided to rebuild the scraper from the ground up, using no tutorials guiding the way.  There were several things I wanted to approach completely different.  
-
-## Escape from callback hell. 
-I dove into async-await & promises. Learning about error catching pitfalls in asynchronous functions. Handling variable instantiation and handing it a value from the resolution of a promise.
-
-## Get rid of bloat.
-- I searched out unnecessary or outdated modules or practices of using Express that was taught to me by MDN’s tutorial.
-- I learned about each part of the generated Express app upon creation, fWhat was necessary, what was outdated?
- Learned several outdated (list these) modules Express was using.
- Realizing I needed a better error handling solution.
- I went with Winston, because it seemed like it was the most popular.  I am now under the impression that I might have been better off using a more basic hand made error handler. I ran into several issues that arose from Winston upgrading to V.3(?) that had caused many developers issues.  I also think I might not have spent enough time exploring the features Winston gives me and how to hand local errors to it.
-Aim to incorporate more ES6+ syntax and functionality.
- In using async-await, I explored the various ways to use arrow functions in my then() statements.
- Utilize more destructured Objects.
-Understand when to use `let` vs `const` vs `var`
-Use industry best practices in app structure and file tree to make the app scalable and less error prone.
-Make the app fundamentally more modular, which in turn solves scalability and error proneness.
- When creating functions, making sure not to repeat code by making them general purpose and placing them into a helper module that can be used throughout my app.
-
-### Getting Started
-
-
-### More Specific Topics (+ sample sub-categories)
-- Versioning: Services, APIs, Systems
-- Common Error Messages/related details
-- Tests
-
-### TODO
-- Next steps
-- Features planned
-- Known bugs (shortlist)
-
-#### <3 taco-tues-on-a-fri
