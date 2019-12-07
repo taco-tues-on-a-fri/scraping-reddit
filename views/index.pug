@@ -36,7 +36,7 @@ block content
             h1.text-info= scrape_title
             <div class="row pt-4"></div>
               label.col-form-label.col-form-label-lg(for='form_response') Url to be scraped:
-              input.form-control.form-control-lg#form_response(type='text' placeholder='https://www.reddit.com/r/unhealthy-sofas' name='form_response' value=(undefined===user_input ? '' : user_input.form_response))
+              input.form-control.form-control-lg#form_response(type='text' placeholder='https://www.reddit.com/r/legaladvice/comments/34l7vo/ma_postit_notes_left_in_apartment/' name='form_response' value=(undefined===user_input ? 'https://www.reddit.com/r/legaladvice/comments/34l7vo/ma_postit_notes_left_in_apartment/' : user_input.form_response))
             <div class="row pt-3">
             <div class="col">
               <div class="btn-group" role="group" aria-label="Scrape Type">
