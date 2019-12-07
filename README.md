@@ -15,7 +15,7 @@ The project is still in development. There are several other features I would li
 - Configure `example.env` with user settings in the format provided.  
 - Navigate to app homepage at localhost://2026. 
 - Click on 'Create a scrape' to go to the scrape form. 
-- Input a valid Reddit comment thread URL to analyse. 
+- Input a valid Reddit comment thread URL to analyze. 
 
 NOTE: Currently only accepts the following format:
 `https://www.reddit.com/r/legaladvice/comments/34l7vo/ma_postit_notes_left_in_apartment/`
