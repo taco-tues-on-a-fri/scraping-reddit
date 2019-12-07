@@ -1,5 +1,5 @@
 *.code-workspace
-vscode/
+.vscode/
 *.env
 logs/
 *.log
@@ -11,6 +11,7 @@ merge/
 merge.*
 template.*
 templates/
+.DS_Store
 
 # User-specific files
 *.suo
