@@ -4,7 +4,6 @@ const appRoot  =  require('app-root-path');
 require('express-async-errors');
 
 
-
 //| index
 //|------------------------------------------------------------------------
 exports.index = function(req, res) {
@@ -13,50 +12,3 @@ exports.index = function(req, res) {
       scrape_title: 'Create Scrape'
     });
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//|------------------------------------------------------------------------
-//#region | TEST |  testing fs helper function | request_url_fs_save
-/**
-|--------------------------------------------------------------------------
-|  request_url_fs_save
-|--------------------------------------------------------------------------
-| 
-|
-*/
-
-exports.request_url_fs_save = async function (req, res, next) {
-  let options = {
-    method: 'GET',
-    uri: 'https://www.reddit.com/r/ethtrader/comments/dtdsmm/ethereum_istanbul_hard_fork_release_date/.json',
-    json: true
-  };
-
-  let file_name = 'thrilling_woodcock.json' 
-
-
-  await rp(options)
-    .then(json => helper.fs_read_write(file_name, json)) 
-    .then(() => res.json({ message: 'Successfully scraped and saved reddit' }))
-    .catch(err => next(err))
-};
-//#endregion
-//|------------------------------------------------------------------------
