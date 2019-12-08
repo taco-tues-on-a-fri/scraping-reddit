@@ -22,6 +22,9 @@ After filling in your desired URL, choose between 2 scrape sources:
 - Request JSON directly from Reddit. 
 - Archived version of the comment thread from Pushshift.
 
+![Create scrape](src/imgs/Create-Scrape.png)
+![Reddit comment list](src/imgs/Reddit-Comment-List.png)
+![Pushshift comment sort](src/imgs/PushShift-Comment-Sort.png)
 Choose which method to have the response display returned in:
 - List method will grab each comment and its metadata along with any subsequent child response, then flatten all threads found.
 - Sort method will only target each comment's `author: comment` and then sort the results by `author`.
