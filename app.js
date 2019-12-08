@@ -15,7 +15,6 @@ const winston     =  require(appRoot + '/config/winston');
 //| Controllers
 //|------------------------------------------------------------------------
 const home_router   =  require(appRoot + '/routes/home');
-const scrape_router =  require(appRoot + '/routes/scrape');
 
 
 //| Create Express server
@@ -46,20 +45,10 @@ app.use(express.json());
 //| Recognize incoming Request Object as strings or arrays
 app.use(express.urlencoded({ extended: false }));
 
-//| Parse Cookie header and populate req.cookies with object keyed by cookie names
-app.use(cookieParser());
-
-//| Report real time server metrics for Express-based node servers.
-app.use(expressStatusMonitor());
-
-//| Node.js compression middleware | supported compression codings: deflate | gzip
-app.use(compression());
-
 
 //| Primary app routes
 //|------------------------------------------------------------------------
 app.use('/', home_router);
-app.use('/', users_router);
 
 
 //| Catch 404 and forward to error handler
