@@ -1,19 +1,12 @@
-//| module dependencies
-//|------------------------------------------------------------------------
 const appRoot   =  require('app-root-path');
-const async     =  require('async');
 const helper    =  require(appRoot + '/lib/helper');
 const pushshift =  require(appRoot + '/lib/push-shift');
 const reddit    =  require(appRoot + '/lib/reddit');
 const regex     =  require(appRoot + '/lib/regex');
-const req_prom  =  require('request-promise-native');
+const req_prom  =  require('request-promise');
 
 const { body,validationResult } =  require('express-validator');
-// const { sanitizeBody }          =  require('express-validator');
 require('express-async-errors');
-
-
-
 
 
 //| list reddit comments on POST
@@ -38,7 +31,6 @@ exports.reddit_list = async function (req, res, next) {
     .catch(err => next(err))
 
 };
-
 
 
 //| sort reddit comments on POST
@@ -66,7 +58,6 @@ exports.reddit_sort = async function (req, res, next) {
 };
 
 
-
 //| list pushshift comments on POST
 //|------------------------------------------------------------------------
 exports.pushshift_list = async function (req, res, next) {
@@ -91,7 +82,6 @@ exports.pushshift_list = async function (req, res, next) {
     .catch(err => next(err))
 
 };
-
 
 
 //| sort pushshift comments on POST
