@@ -11,8 +11,8 @@ Node.js app built with the ultimate goal of scraping Reddit comments to utilize 
 The project is still in development. There are several other features I would like to implement that would track and analyze disinformation campaigns. This app is not currently out-of-the-box user-friendly, but I intend to make the interface more robust in a future update.
 
 ### How to run and use:
-- Clone and npm install dependencies. 
-- Configure `example.env` with user settings in the format provided.  
+- Clone and npm install dependencies.
+- Create directory named `/bin/` use the `example.www` as template and rename `www` inside of `/bin/`.
 - Navigate to app homepage at localhost://2026. 
 - Click on 'Create a scrape' to go to the scrape form. 
 - Input a valid Reddit comment thread URL to analyze, using the following format:
