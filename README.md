@@ -31,7 +31,7 @@ Choose which method to have the response display returned in:
 
 NOTE:  Using either of the Reddit scrape methods will not yield a complete set of comments due to Reddit not serving more than ~1500 comments. Pushshift's methods will serve a complete dataset, but all of comments' scores will generally be incorrect. This is due to how and when Pushshift grabs comments for archival.
 
-### Version 2.0 Design Decisions & Project Issues:
+### Version 2.0 Design decisions & project issues:
 While taking a short break from building v.1.0, I attained a deeper understanding of various JavaScript foundational concepts and decided to apply these lessons by creating a second version of the scraper. This version addressed many of the flawed design approaches that were previously inefficient or insecure.
 
 The first of these design changes was to structure the app in a way that aligns with industry best practices in application architecture.  By using general purpose functions I reduced repetitive code, which allows for scalability and less errors.
@@ -43,3 +43,5 @@ Finally, I decided to to utilize Async-Await & Promises to handle my asynchronou
 ### Resources:
 - [Pushshift.io](https://pushshift.io/)
 - [Pushshift Documentation](https://pushshift.io/api-parameters/)
+
+#### 🌮taco-tues-on-a-fri
