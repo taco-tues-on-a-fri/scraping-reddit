@@ -1,6 +1,6 @@
 Scraping Reddit
 ========
-May 2019 - Present
+May 2019 - December 2019
 ------------------
 ## Version 2.0 of my first independent project which explored creating a Reddit comment scraper with Node.js.
 
@@ -8,7 +8,7 @@ May 2019 - Present
 Node.js app built with the ultimate goal of scraping Reddit comments to utilize NLP/ML processes for tracking user/troll/bot behaviors in order to recognize disinformation patterns and analyze sentiment within a subreddit community.
 
 ### State of project:
-The project is still in development. There are several other features I would like to implement that would track and analyze disinformation campaigns. This app is not currently out-of-the-box user-friendly, but I intend to make the interface more robust in a future update.
+The project is complete. There are several other features I would like to implement that would track and analyze disinformation campaigns. This app is not currently out-of-the-box user-friendly, but I intend to make the interface more robust in a future update.
 
 ### How to run and use:
 - Clone and npm install dependencies.
